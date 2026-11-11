@@ -154,11 +154,31 @@ img {
 }
 
 .lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: var(--text-muted);
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.78rem;
-  padding: 2px 6px;
+  letter-spacing: 0.02em;
+  padding: 3px 8px;
   border-radius: var(--radius-full);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  line-height: 1;
+}
+
+.lang-flag {
+  width: 18px;
+  height: 12px;
+  border-radius: 2px;
+  object-fit: cover;
+  display: inline-block;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  border: 0.5px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
 }
 
 .lang-btn:hover {

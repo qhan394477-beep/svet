@@ -304,7 +304,7 @@ const STORE_WA_NUMBER = "77014459988";
 const STORE_PHONE_2 = "+7 (778) 649-03-82";
 const STORE_TG_URL = "https://t.me/+77786490382";
 const STORE_INSTA_URL = "https://www.instagram.com/evrosvet_kulsary/";
-const STORE_2GIS_URL = "https://2gis.kz/kulsary/search/Евросвет";
+const STORE_2GIS_URL = "https://2gis.kz/atyrau/firm/70000001077001647?m=54.0172%2C46.96244%2F16";
 
 // 3. БАҒДАРЛАМАНЫ БАСТАУ (Initialization)
 document.addEventListener("DOMContentLoaded", () => {
