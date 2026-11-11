@@ -1,1879 +1,911 @@
 <!DOCTYPE html>
 <html lang="kk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Евросвет Кульсары | Интернет-дүкен</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
---primary:#f59e0b;--primary-dark:#d97706;--primary-light:#fbbf24;
---dark:#1a1a2e;--darker:#16213e;--light:#f8fafc;--gray:#64748b;--gray-light:#e2e8f0;
---success:#10b981;--danger:#ef4444;--info:#3b82f6;--purple:#8b5cf6;
---gradient:linear-gradient(135deg,#f59e0b 0%,#ef4444 50%,#8b5cf6 100%);
---shadow:0 20px 60px rgba(0,0,0,0.15);--shadow-sm:0 4px 15px rgba(0,0,0,0.08);
---radius:16px;--radius-sm:10px;--radius-full:50px;
-}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--light);color:var(--dark);overflow-x:hidden;line-height:1.6}
-a{text-decoration:none;color:inherit}
-button{cursor:pointer;border:none;font-family:inherit}
-img{max-width:100%;display:block}
-.container{max-width:1280px;margin:0 auto;padding:0 20px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ЕвроСвет Құлсары | Люстралар мен жарықтандыру дүкені</title>
+  <meta name="description" content="ЕвроСвет Құлсары - люстралар, бра, трек жүйелері, сыртқы жарық. Құлсары бойынша жеткізу, Kaspi QR, Kaspi Red бөліп төлеу.">
+  <meta name="theme-color" content="#0c0f14">
 
-/* ===== TOP BAR ===== */
-.top-bar{background:var(--dark);color:#fff;padding:8px 0;font-size:13px}
-.top-bar .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.top-bar .left{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.top-bar .right{display:flex;align-items:center;gap:15px}
-.top-bar a{color:#cbd5e1;transition:.3s}
-.top-bar a:hover{color:var(--primary)}
-.top-bar .tag{background:var(--primary);color:var(--dark);padding:2px 12px;border-radius:50px;font-weight:600;font-size:11px}
+  <!-- Favicon (inline SVG) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230c0f14'/%3E%3Cpath d='M32 11a13 13 0 0 0-7.5 23.6V39h15v-4.4A13 13 0 0 0 32 11z' fill='%23e5b95f'/%3E%3Crect x='25' y='43' width='14' height='4' rx='2' fill='%23e5b95f'/%3E%3Crect x='27' y='50' width='10' height='3' rx='1.5' fill='%23e5b95f'/%3E%3C/svg%3E">
 
-/* ===== LANGUAGE TOGGLE ===== */
-.lang-toggle{display:flex;gap:4px;background:rgba(255,255,255,0.1);border-radius:8px;padding:3px}
-.lang-btn{padding:5px 14px;border-radius:6px;font-size:12px;font-weight:600;background:transparent;color:#94a3b8;transition:.3s}
-.lang-btn.active{background:var(--primary);color:var(--dark)}
-
-/* ===== HEADER ===== */
-.header{background:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 20px rgba(0,0,0,0.06)}
-.header .container{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;gap:20px}
-.logo{display:flex;align-items:center;gap:12px}
-.logo-icon{width:50px;height:50px;background:var(--gradient);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}
-.logo-text{line-height:1.2}
-.logo-text h1{font-size:20px;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.logo-text span{font-size:11px;color:var(--gray);font-weight:500}
-
-.main-nav{display:flex;align-items:center;gap:5px}
-.nav-link{padding:10px 18px;border-radius:var(--radius-full);font-size:14px;font-weight:500;color:var(--dark);transition:.3s;position:relative}
-.nav-link:hover,.nav-link.active{background:rgba(245,158,11,0.1);color:var(--primary)}
-.nav-link::after{content:'';position:absolute;bottom:4px;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--primary);transition:.3s}
-.nav-link:hover::after,.nav-link.active::after{width:20px}
-
-.header-actions{display:flex;align-items:center;gap:10px}
-.search-box{display:flex;align-items:center;background:var(--gray-light);border-radius:var(--radius-full);padding:0 5px 0 18px;height:44px;overflow:hidden;transition:.3s;width:220px}
-.search-box:focus-within{width:280px;background:#fff;box-shadow:0 0 0 2px var(--primary)}
-.search-box input{border:none;background:transparent;outline:none;font-size:14px;width:100%;font-family:inherit}
-.search-box button{background:var(--primary);color:#fff;width:36px;height:36px;border-radius:50%;font-size:13px;flex-shrink:0}
-
-.icon-btn{width:44px;height:44px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;background:var(--gray-light);transition:.3s;position:relative;font-size:18px}
-.icon-btn:hover{background:var(--primary);color:#fff;transform:translateY(-2px)}
-.icon-btn .badge{position:absolute;top:-2px;right:-2px;background:var(--danger);color:#fff;font-size:10px;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}
-
-.mobile-toggle{display:none;width:44px;height:44px;border-radius:var(--radius-sm);background:var(--gray-light);align-items:center;justify-content:center;font-size:20px}
-
-/* ===== HERO ===== */
-.hero{position:relative;min-height:600px;display:flex;align-items:center;overflow:hidden;background:var(--dark)}
-.hero-bg{position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 800"><defs><radialGradient id="g1" cx="20%" cy="50%"><stop offset="0%" stop-color="%23f59e0b" stop-opacity="0.3"/><stop offset="100%" stop-color="transparent"/></radialGradient><radialGradient id="g2" cx="80%" cy="30%"><stop offset="0%" stop-color="%238b5cf6" stop-opacity="0.2"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs><rect fill="url(%23g1)" width="100%" height="100%"/><rect fill="url(%23g2)" width="100%" height="100%"/></svg>');opacity:0.6}
-.hero-particles{position:absolute;inset:0;overflow:hidden}
-.particle{position:absolute;width:4px;height:4px;background:var(--primary);border-radius:50%;opacity:0.3;animation:float 15s infinite}
-@keyframes float{0%,100%{transform:translateY(0) translateX(0)}25%{transform:translateY(-100px) translateX(30px)}50%{transform:translateY(-50px) translateX(-20px)}75%{transform:translateY(-150px) translateX(50px)}}
-
-.hero .container{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;padding:60px 20px}
-.hero-content{color:#fff}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,0.2);border:1px solid rgba(245,158,11,0.3);padding:8px 20px;border-radius:50px;font-size:13px;font-weight:600;color:var(--primary-light);margin-bottom:20px}
-.hero-badge i{animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
-.hero-content h2{font-size:52px;font-weight:900;line-height:1.1;margin-bottom:20px}
-.hero-content h2 .highlight{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-content p{font-size:18px;color:#94a3b8;margin-bottom:35px;max-width:500px;line-height:1.8}
-.hero-btns{display:flex;gap:15px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 32px;border-radius:var(--radius-full);font-size:15px;font-weight:600;transition:.4s;border:2px solid transparent}
-.btn-primary{background:var(--primary);color:var(--dark)}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(245,158,11,0.4)}
-.btn-outline{border-color:rgba(255,255,255,0.2);color:#fff;background:rgba(255,255,255,0.05);backdrop-filter:blur(10px)}
-.btn-outline:hover{background:rgba(255,255,255,0.15);transform:translateY(-3px)}
-.btn-dark{background:var(--dark);color:#fff}
-.btn-dark:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(0,0,0,0.3)}
-.btn-success{background:var(--success);color:#fff}
-.btn-success:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(16,185,129,0.3)}
-.btn-danger{background:var(--danger);color:#fff}
-.btn-danger:hover{transform:translateY(-2px)}
-.btn-sm{padding:10px 20px;font-size:13px}
-.btn-lg{padding:18px 40px;font-size:17px}
-.btn-block{width:100%;justify-content:center}
-
-.hero-stats{display:flex;gap:40px;margin-top:45px}
-.stat-item{color:#fff}
-.stat-number{font-size:36px;font-weight:800;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat-label{font-size:13px;color:#94a3b8;margin-top:4px}
-
-.hero-visual{position:relative;display:flex;align-items:center;justify-content:center}
-.hero-glow{width:450px;height:450px;background:radial-gradient(circle,rgba(245,158,11,0.25) 0%,transparent 70%);position:absolute;border-radius:50%;animation:glow 4s ease-in-out infinite}
-@keyframes glow{0%,100%{transform:scale(1);opacity:0.6}50%{transform:scale(1.15);opacity:1}}
-.hero-image{width:400px;height:400px;background:var(--gradient);border-radius:30px;display:flex;align-items:center;justify-content:center;font-size:120px;color:#fff;position:relative;z-index:2;box-shadow:var(--shadow)}
-.hero-floating{position:absolute;background:#fff;border-radius:var(--radius);padding:15px 20px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow);z-index:3;animation:floatCard 3s ease-in-out infinite}
-.hero-floating .icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
-.hero-floating .info .title{font-size:12px;font-weight:600;color:var(--dark)}
-.hero-floating .info .sub{font-size:11px;color:var(--gray)}
-.hero-floating:nth-child(3){top:15%;left:-20px;animation-delay:0.5s}
-.hero-floating:nth-child(4){bottom:20%;right:-20px;animation-delay:1s}
-.hero-floating:nth-child(5){bottom:5%;left:10%;animation-delay:1.5s}
-@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
-
-/* ===== FEATURES BAR ===== */
-.features-bar{background:#fff;padding:40px 0;border-bottom:1px solid var(--gray-light)}
-.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
-.feature-item{display:flex;align-items:center;gap:16px;padding:20px;border-radius:var(--radius);transition:.3s}
-.feature-item:hover{background:var(--gray-light);transform:translateY(-3px)}
-.feature-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.feature-info h4{font-size:15px;font-weight:700;margin-bottom:4px}
-.feature-info p{font-size:12px;color:var(--gray)}
-
-/* ===== CATEGORIES ===== */
-.section{padding:80px 0}
-.section-header{text-align:center;margin-bottom:50px}
-.section-header .tag{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,0.1);color:var(--primary);padding:8px 20px;border-radius:50px;font-size:13px;font-weight:600;margin-bottom:15px}
-.section-header h2{font-size:38px;font-weight:800;margin-bottom:12px}
-.section-header p{font-size:16px;color:var(--gray);max-width:600px;margin:0 auto}
-
-.categories-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
-.category-card{position:relative;overflow:hidden;border-radius:var(--radius);padding:35px 25px;background:#fff;box-shadow:var(--shadow-sm);transition:.4s;cursor:pointer;border:2px solid transparent}
-.category-card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:var(--primary)}
-.category-card .cat-icon{width:70px;height:70px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;margin-bottom:18px;transition:.3s}
-.category-card:hover .cat-icon{transform:scale(1.1) rotate(5deg)}
-.category-card h3{font-size:19px;font-weight:700;margin-bottom:8px}
-.category-card p{font-size:13px;color:var(--gray);margin-bottom:15px}
-.category-card .cat-count{font-size:13px;font-weight:600;color:var(--primary);display:flex;align-items:center;gap:6px}
-.category-card .cat-arrow{position:absolute;bottom:25px;right:25px;width:36px;height:36px;border-radius:50%;background:var(--gray-light);display:flex;align-items:center;justify-content:center;transition:.3s}
-.category-card:hover .cat-arrow{background:var(--primary);color:#fff;transform:translateX(5px)}
-
-/* ===== PRODUCTS ===== */
-.products-section{background:var(--gray-light)}
-.filter-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:40px;flex-wrap:wrap}
-.filter-btn{padding:12px 28px;border-radius:var(--radius-full);font-size:14px;font-weight:600;background:#fff;color:var(--gray);transition:.3s;border:2px solid transparent}
-.filter-btn:hover,.filter-btn.active{background:var(--primary);color:var(--dark);border-color:var(--primary)}
-.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:25px}
-.product-card{background:#fff;border-radius:var(--radius);overflow:hidden;transition:.4s;position:relative;box-shadow:var(--shadow-sm)}
-.product-card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
-.product-image{position:relative;height:260px;overflow:hidden;background:var(--gray-light)}
-.product-image .img-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:70px;transition:.5s}
-.product-card:hover .img-placeholder{transform:scale(1.1)}
-.product-badges{position:absolute;top:15px;left:15px;display:flex;flex-direction:column;gap:6px}
-.product-badge{padding:5px 12px;border-radius:6px;font-size:11px;font-weight:700;color:#fff}
-.badge-sale{background:var(--danger)}
-.badge-new{background:var(--info)}
-.badge-hot{background:var(--primary)}
-.badge-hit{background:var(--purple)}
-.product-actions{position:absolute;top:15px;right:15px;display:flex;flex-direction:column;gap:8px;opacity:0;transform:translateX(10px);transition:.3s}
-.product-card:hover .product-actions{opacity:1;transform:translateX(0)}
-.action-btn{width:38px;height:38px;border-radius:10px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;transition:.3s;box-shadow:0 3px 10px rgba(0,0,0,0.1)}
-.action-btn:hover{background:var(--primary);color:#fff}
-.action-btn.wishlisted{background:var(--danger);color:#fff}
-.product-info{padding:20px}
-.product-category{font-size:11px;font-weight:600;color:var(--primary);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
-.product-name{font-size:16px;font-weight:700;margin-bottom:8px;line-height:1.4}
-.product-rating{display:flex;align-items:center;gap:6px;margin-bottom:12px}
-.stars{color:var(--primary);font-size:12px}
-.rating-text{font-size:12px;color:var(--gray)}
-.product-price{display:flex;align-items:center;gap:10px;margin-bottom:15px}
-.current-price{font-size:22px;font-weight:800;color:var(--dark)}
-.old-price{font-size:14px;color:var(--gray);text-decoration:line-through}
-.product-add-btn{width:100%;padding:13px;border-radius:var(--radius-sm);background:var(--primary);color:var(--dark);font-size:14px;font-weight:600;transition:.3s;display:flex;align-items:center;justify-content:center;gap:8px}
-.product-add-btn:hover{background:var(--primary-dark);color:#fff;transform:translateY(-2px)}
-.product-add-btn.added{background:var(--success);color:#fff}
-
-/* ===== PROMO ===== */
-.promo-section{padding:0 0 80px}
-.promo-grid{display:grid;grid-template-columns:2fr 1fr;gap:25px}
-.promo-card{border-radius:var(--radius);padding:45px;position:relative;overflow:hidden;cursor:pointer;transition:.4s}
-.promo-card:hover{transform:translateY(-5px)}
-.promo-card.large{background:var(--gradient);min-height:350px;display:flex;align-items:center}
-.promo-card.small{min-height:160px;display:flex;flex-direction:column;justify-content:center}
-.promo-card .promo-content{position:relative;z-index:2;color:#fff}
-.promo-card .promo-content .tag{background:rgba(255,255,255,0.2);padding:5px 15px;border-radius:50px;font-size:11px;font-weight:600;display:inline-block;margin-bottom:12px}
-.promo-card .promo-content h3{font-size:32px;font-weight:800;margin-bottom:10px}
-.promo-card .promo-content p{opacity:0.85;margin-bottom:20px;font-size:15px}
-.promo-right{display:grid;gap:25px}
-.promo-card.blue{background:linear-gradient(135deg,#3b82f6,#8b5cf6)}
-.promo-card.green{background:linear-gradient(135deg,#10b981,#3b82f6)}
-
-/* ===== REVIEWS ===== */
-.reviews-section{background:var(--dark);color:#fff}
-.reviews-section .section-header h2{color:#fff}
-.reviews-section .section-header p{color:#94a3b8}
-.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px}
-.review-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:30px;transition:.3s}
-.review-card:hover{background:rgba(255,255,255,0.1);transform:translateY(-5px)}
-.review-header{display:flex;align-items:center;gap:15px;margin-bottom:18px}
-.review-avatar{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:#fff}
-.review-user .name{font-size:15px;font-weight:700;margin-bottom:2px}
-.review-user .date{font-size:12px;color:#94a3b8}
-.review-stars{margin-bottom:12px;display:flex;gap:3px}
-.review-stars i{color:var(--primary);font-size:14px}
-.review-text{font-size:14px;color:#cbd5e1;line-height:1.8;margin-bottom:15px}
-.review-product{font-size:12px;color:var(--primary);display:flex;align-items:center;gap:6px}
-.review-form{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:35px;margin-top:30px}
-.review-form h3{font-size:22px;font-weight:700;margin-bottom:20px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:15px}
-.form-group{margin-bottom:15px}
-.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:8px;color:#94a3b8}
-.form-group input,.form-group textarea,.form-group select{width:100%;padding:14px 18px;border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-family:inherit;font-size:14px;outline:none;transition:.3s}
-.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--primary);background:rgba(245,158,11,0.1)}
-.form-group textarea{resize:vertical;min-height:100px}
-.form-group select option{background:var(--dark);color:#fff}
-.star-rating-input{display:flex;gap:8px}
-.star-rating-input i{font-size:28px;cursor:pointer;transition:.2s;color:rgba(255,255,255,0.2)}
-.star-rating-input i:hover,.star-rating-input i.active{color:var(--primary);transform:scale(1.15)}
-
-/* ===== MAP / CONTACT ===== */
-.contact-section{padding:80px 0}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-.contact-info{background:#fff;border-radius:var(--radius);padding:40px;box-shadow:var(--shadow-sm)}
-.contact-info h3{font-size:26px;font-weight:800;margin-bottom:25px}
-.contact-item{display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-bottom:1px solid var(--gray-light)}
-.contact-item:last-child{border:none}
-.contact-item .ci-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
-.contact-item .ci-info h4{font-size:14px;font-weight:700;margin-bottom:3px}
-.contact-item .ci-info p{font-size:13px;color:var(--gray)}
-.contact-item .ci-info a{color:var(--primary);font-weight:600;transition:.3s}
-.contact-item .ci-info a:hover{text-decoration:underline}
-.map-container{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);min-height:500px;background:var(--gray-light);position:relative}
-.map-container iframe{width:100%;height:100%;border:none;min-height:500px}
-.map-overlay{position:absolute;bottom:20px;left:20px;right:20px;background:#fff;border-radius:var(--radius-sm);padding:20px;display:flex;align-items:center;gap:15px;box-shadow:var(--shadow-sm)}
-.map-overlay .mo-icon{width:50px;height:50px;border-radius:12px;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff}
-.map-overlay .mo-info h4{font-size:15px;font-weight:700}
-.map-overlay .mo-info p{font-size:12px;color:var(--gray)}
-.map-overlay .mo-btn{margin-left:auto;padding:10px 20px;border-radius:var(--radius-full);background:var(--success);color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px}
-
-/* ===== SOCIAL CTA ===== */
-.social-cta{background:var(--gradient);padding:70px 0;position:relative;overflow:hidden}
-.social-cta::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');background-size:30px 30px}
-.social-cta .container{position:relative;z-index:2;text-align:center}
-.social-cta h2{color:#fff;font-size:38px;font-weight:800;margin-bottom:15px}
-.social-cta p{color:rgba(255,255,255,0.85);font-size:17px;margin-bottom:35px}
-.social-btns{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
-.social-btn{display:flex;align-items:center;gap:12px;padding:18px 35px;border-radius:var(--radius-full);font-size:16px;font-weight:700;transition:.4s;color:#fff}
-.social-btn:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,0.3)}
-.social-btn.instagram{background:linear-gradient(135deg,#e1306c,#833ab4,#405de6)}
-.social-btn.whatsapp{background:#25d366}
-.social-btn.telegram{background:#229ed9}
-.social-btn i{font-size:22px}
-
-/* ===== FOOTER ===== */
-.footer{background:var(--dark);color:#fff;padding:70px 0 0}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:40px;padding-bottom:50px;border-bottom:1px solid rgba(255,255,255,0.1)}
-.footer-about .logo{margin-bottom:20px}
-.footer-about .logo-text h1{-webkit-text-fill-color:transparent}
-.footer-about p{color:#94a3b8;font-size:14px;line-height:1.8;margin-bottom:25px}
-.footer-social{display:flex;gap:12px}
-.fs-btn{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);color:#94a3b8;font-size:17px;transition:.3s}
-.fs-btn:hover{background:var(--primary);color:var(--dark);transform:translateY(-3px)}
-.footer-links h4{font-size:16px;font-weight:700;margin-bottom:20px;position:relative;padding-bottom:12px}
-.footer-links h4::after{content:'';position:absolute;bottom:0;left:0;width:30px;height:3px;background:var(--primary);border-radius:2px}
-.footer-links ul{list-style:none}
-.footer-links li{margin-bottom:12px}
-.footer-links a{color:#94a3b8;font-size:14px;transition:.3s;display:flex;align-items:center;gap:8px}
-.footer-links a:hover{color:var(--primary);transform:translateX(5px)}
-.footer-newsletter p{color:#94a3b8;font-size:14px;line-height:1.8;margin-bottom:20px}
-.newsletter-form{display:flex;gap:10px;margin-bottom:25px}
-.newsletter-form input{flex:1;padding:14px 18px;border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-family:inherit;outline:none}
-.newsletter-form input:focus{border-color:var(--primary)}
-.newsletter-form button{padding:14px 24px;border-radius:var(--radius-sm);background:var(--primary);color:var(--dark);font-weight:700;transition:.3s}
-.newsletter-form button:hover{background:var(--primary-dark);color:#fff}
-.footer-contacts{display:flex;flex-direction:column;gap:15px}
-.fc-item{display:flex;align-items:center;gap:12px;color:#94a3b8;font-size:14px}
-.fc-item i{color:var(--primary);width:20px;text-align:center}
-.footer-bottom{padding:25px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
-.footer-bottom p{color:#64748b;font-size:13px}
-.footer-bottom-links{display:flex;gap:20px}
-.footer-bottom-links a{color:#64748b;font-size:13px;transition:.3s}
-.footer-bottom-links a:hover{color:var(--primary)}
-
-/* ===== CART SIDEBAR ===== */
-.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);z-index:2000;opacity:0;visibility:hidden;transition:.4s}
-.cart-overlay.open{opacity:1;visibility:visible}
-.cart-sidebar{position:fixed;top:0;right:-500px;width:480px;height:100vh;background:#fff;z-index:2001;transition:.5s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column}
-.cart-sidebar.open{right:0}
-.cart-header{padding:25px;border-bottom:1px solid var(--gray-light);display:flex;justify-content:space-between;align-items:center}
-.cart-header h3{font-size:22px;font-weight:800;display:flex;align-items:center;gap:10px}
-.cart-header h3 i{color:var(--primary)}
-.cart-close{width:40px;height:40px;border-radius:10px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;font-size:18px;transition:.3s}
-.cart-close:hover{background:var(--danger);color:#fff}
-.cart-items{flex:1;overflow-y:auto;padding:20px}
-.cart-item{display:flex;gap:15px;padding:15px;border-radius:var(--radius-sm);border:1px solid var(--gray-light);margin-bottom:15px;transition:.3s;animation:slideIn .3s}
-@keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
-.cart-item:hover{border-color:var(--primary);box-shadow:var(--shadow-sm)}
-.cart-item-img{width:80px;height:80px;border-radius:var(--radius-sm);background:var(--gray-light);display:flex;align-items:center;justify-content:center;font-size:35px;flex-shrink:0}
-.cart-item-info{flex:1}
-.cart-item-info h4{font-size:14px;font-weight:600;margin-bottom:5px}
-.cart-item-info .cart-price{font-size:16px;font-weight:700;color:var(--primary)}
-.cart-item-controls{display:flex;align-items:center;gap:8px;margin-top:8px}
-.qty-btn{width:30px;height:30px;border-radius:8px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;transition:.3s}
-.qty-btn:hover{background:var(--primary);color:#fff}
-.qty-num{font-size:15px;font-weight:700;min-width:30px;text-align:center}
-.cart-item-remove{width:30px;height:30px;border-radius:8px;background:rgba(239,68,68,0.1);color:var(--danger);display:flex;align-items:center;justify-content:center;font-size:13px;transition:.3s}
-.cart-item-remove:hover{background:var(--danger);color:#fff}
-.cart-footer{padding:25px;border-top:1px solid var(--gray-light);background:var(--gray-light)}
-.cart-summary{margin-bottom:20px}
-.summary-row{display:flex;justify-content:space-between;padding:8px 0;font-size:14px}
-.summary-row.total{font-size:20px;font-weight:800;border-top:2px solid var(--dark);padding-top:15px;margin-top:10px}
-.summary-row.total .price{color:var(--primary)}
-.empty-cart{text-align:center;padding:60px 20px}
-.empty-cart .icon{font-size:80px;margin-bottom:20px;opacity:0.3}
-.empty-cart h3{font-size:22px;margin-bottom:10px}
-.empty-cart p{color:var(--gray);margin-bottom:25px}
-
-/* ===== CHECKOUT MODAL ===== */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);z-index:3000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:.4s;padding:20px}
-.modal-overlay.open{opacity:1;visibility:visible}
-.modal{background:#fff;border-radius:var(--radius);width:700px;max-width:100%;max-height:90vh;overflow-y:auto;transform:scale(0.9);transition:.4s}
-.modal-overlay.open .modal{transform:scale(1)}
-.modal-header{padding:25px 30px;border-bottom:1px solid var(--gray-light);display:flex;justify-content:space-between;align-items:center}
-.modal-header h3{font-size:22px;font-weight:800;display:flex;align-items:center;gap:10px}
-.modal-body{padding:30px}
-.checkout-steps{display:flex;gap:10px;margin-bottom:30px}
-.step{flex:1;padding:12px;border-radius:var(--radius-sm);text-align:center;font-size:13px;font-weight:600;color:var(--gray);background:var(--gray-light);transition:.3s;position:relative}
-.step.active{background:var(--primary);color:var(--dark)}
-.step.done{background:var(--success);color:#fff}
-.step .step-num{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.2);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;margin-bottom:4px}
-.checkout-form{display:grid;gap:20px}
-.light .form-group label{color:var(--dark)}
-.light .form-group input,.light .form-group textarea,.light .form-group select{background:#fff;color:var(--dark);border:2px solid var(--gray-light)}
-.light .form-group input:focus,.light .form-group textarea:focus,.light .form-group select:focus{border-color:var(--primary);background:rgba(245,158,11,0.05)}
-.delivery-options{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.delivery-opt{padding:20px;border:2px solid var(--gray-light);border-radius:var(--radius-sm);cursor:pointer;transition:.3s;text-align:center}
-.delivery-opt:hover,.delivery-opt.selected{border-color:var(--primary);background:rgba(245,158,11,0.05)}
-.delivery-opt .do-icon{font-size:32px;margin-bottom:10px}
-.delivery-opt h4{font-size:15px;font-weight:700;margin-bottom:5px}
-.delivery-opt p{font-size:12px;color:var(--gray)}
-.payment-options{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-.payment-opt{padding:20px;border:2px solid var(--gray-light);border-radius:var(--radius-sm);cursor:pointer;transition:.3s;display:flex;align-items:center;gap:15px}
-.payment-opt:hover,.payment-opt.selected{border-color:var(--primary);background:rgba(245,158,11,0.05)}
-.payment-opt .po-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
-.payment-opt h4{font-size:14px;font-weight:700;margin-bottom:3px}
-.payment-opt p{font-size:11px;color:var(--gray)}
-
-/* ===== AI CHAT ===== */
-.ai-chat-btn{position:fixed;bottom:30px;right:30px;width:65px;height:65px;border-radius:50%;background:var(--gradient);color:#fff;font-size:28px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 40px rgba(245,158,11,0.4);z-index:1500;transition:.4s;animation:bounce 2s infinite}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.ai-chat-btn:hover{transform:scale(1.1);box-shadow:0 15px 50px rgba(245,158,11,0.5)}
-.ai-chat-btn .notification{position:absolute;top:-3px;right:-3px;width:18px;height:18px;background:var(--danger);border-radius:50%;border:3px solid #fff}
-.ai-chat-panel{position:fixed;bottom:110px;right:30px;width:420px;height:580px;background:#fff;border-radius:20px;box-shadow:0 25px 80px rgba(0,0,0,0.2);z-index:1501;display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateY(20px) scale(0.95);transition:.4s}
-.ai-chat-panel.open{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
-.ai-chat-header{background:var(--gradient);color:#fff;padding:20px;border-radius:20px 20px 0 0;display:flex;align-items:center;gap:15px}
-.ai-chat-header .ai-avatar{width:45px;height:45px;border-radius:12px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:22px}
-.ai-chat-header .ai-info h4{font-size:16px;font-weight:700}
-.ai-chat-header .ai-status{font-size:12px;opacity:0.8;display:flex;align-items:center;gap:5px}
-.ai-chat-header .ai-status .dot{width:8px;height:8px;border-radius:50%;background:var(--success);animation:pulse 2s infinite}
-.ai-chat-close{margin-left:auto;width:35px;height:35px;border-radius:8px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:.3s}
-.ai-chat-close:hover{background:rgba(255,255,255,0.3)}
-.ai-chat-messages{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:15px}
-.ai-msg{max-width:85%;padding:14px 18px;border-radius:16px;font-size:14px;line-height:1.6;animation:msgIn .3s}
-@keyframes msgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.ai-msg.bot{background:var(--gray-light);color:var(--dark);border-bottom-left-radius:4px;align-self:flex-start}
-.ai-msg.user{background:var(--primary);color:var(--dark);border-bottom-right-radius:4px;align-self:flex-end}
-.ai-msg .msg-time{font-size:10px;opacity:0.5;margin-top:5px}
-.ai-quick-actions{padding:10px 20px;display:flex;flex-wrap:wrap;gap:8px}
-.quick-btn{padding:8px 16px;border-radius:50px;font-size:12px;font-weight:600;background:rgba(245,158,11,0.1);color:var(--primary);border:1px solid rgba(245,158,11,0.2);transition:.3s;cursor:pointer}
-.quick-btn:hover{background:var(--primary);color:var(--dark)}
-.ai-chat-input{padding:15px 20px;border-top:1px solid var(--gray-light);display:flex;gap:10px;align-items:flex-end}
-.ai-chat-input textarea{flex:1;padding:12px 16px;border-radius:var(--radius-full);border:2px solid var(--gray-light);font-family:inherit;font-size:14px;outline:none;resize:none;max-height:100px;transition:.3s}
-.ai-chat-input textarea:focus{border-color:var(--primary)}
-.ai-send-btn{width:45px;height:45px;border-radius:50%;background:var(--primary);color:var(--dark);display:flex;align-items:center;justify-content:center;font-size:18px;transition:.3s;flex-shrink:0}
-.ai-send-btn:hover{background:var(--primary-dark);color:#fff;transform:scale(1.05)}
-
-/* ===== TOAST ===== */
-.toast-container{position:fixed;top:100px;right:20px;z-index:5000;display:flex;flex-direction:column;gap:10px}
-.toast{padding:16px 24px;border-radius:var(--radius-sm);color:#fff;font-size:14px;font-weight:600;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow);animation:toastIn .4s;min-width:300px}
-@keyframes toastIn{from{opacity:0;transform:translateX(100px)}to{opacity:1;transform:translateX(0)}}
-.toast.success{background:var(--success)}
-.toast.error{background:var(--danger)}
-.toast.info{background:var(--info)}
-.toast.warning{background:var(--primary);color:var(--dark)}
-
-/* ===== SCROLL TOP ===== */
-.scroll-top{position:fixed;bottom:30px;left:30px;width:50px;height:50px;border-radius:14px;background:var(--dark);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;z-index:1000;opacity:0;visibility:hidden;transition:.3s;cursor:pointer}
-.scroll-top.show{opacity:1;visibility:visible}
-.scroll-top:hover{background:var(--primary);color:var(--dark);transform:translateY(-3px)}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:1200px){.products-grid{grid-template-columns:repeat(3,1fr)}.hero-content h2{font-size:42px}}
-@media(max-width:992px){
-.main-nav{display:none}
-.mobile-toggle{display:flex}
-.search-box{width:160px}
-.search-box:focus-within{width:200px}
-.hero .container{grid-template-columns:1fr;text-align:center}
-.hero-visual{display:none}
-.hero-content p{margin:0 auto 35px}
-.hero-btns{justify-content:center}
-.hero-stats{justify-content:center}
-.features-grid{grid-template-columns:repeat(2,1fr)}
-.categories-grid{grid-template-columns:repeat(2,1fr)}
-.products-grid{grid-template-columns:repeat(2,1fr)}
-.promo-grid{grid-template-columns:1fr}
-.reviews-grid{grid-template-columns:1fr}
-.contact-grid{grid-template-columns:1fr}
-.footer-grid{grid-template-columns:1fr 1fr}
-}
-@media(max-width:768px){
-.top-bar .left{display:none}
-.hero{min-height:auto;padding:40px 0}
-.hero-content h2{font-size:32px}
-.hero-stats{gap:25px}
-.stat-number{font-size:28px}
-.features-grid{grid-template-columns:1fr}
-.categories-grid{grid-template-columns:1fr}
-.products-grid{grid-template-columns:1fr}
-.form-row{grid-template-columns:1fr}
-.delivery-options,.payment-options{grid-template-columns:1fr}
-.cart-sidebar{width:100%}
-.ai-chat-panel{width:calc(100% - 30px);right:15px;height:500px}
-.footer-grid{grid-template-columns:1fr}
-.section{padding:50px 0}
-.section-header h2{font-size:28px}
-.promo-card .promo-content h3{font-size:24px}
-}
-@media(max-width:480px){
-.header .container{gap:10px}
-.search-box{display:none}
-.hero-content h2{font-size:26px}
-.hero-btns{flex-direction:column;align-items:center}
-.btn{width:100%;justify-content:center}
-.hero-stats{flex-direction:column;gap:15px}
-.filter-tabs{gap:6px}
-.filter-btn{padding:8px 16px;font-size:12px}
-}
-
-/* ===== MOBILE MENU ===== */
-.mobile-menu{position:fixed;top:0;left:-100%;width:320px;height:100vh;background:#fff;z-index:2500;transition:.5s cubic-bezier(.22,1,.36,1);padding:30px;overflow-y:auto}
-.mobile-menu.open{left:0}
-.mobile-menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:2499;opacity:0;visibility:hidden;transition:.3s}
-.mobile-menu-overlay.open{opacity:1;visibility:visible}
-.mobile-menu-close{position:absolute;top:20px;right:20px;width:40px;height:40px;border-radius:10px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
-.mobile-menu-links{margin-top:40px;display:flex;flex-direction:column;gap:5px}
-.mobile-menu-links a{padding:15px 20px;border-radius:var(--radius-sm);font-size:16px;font-weight:500;transition:.3s;display:flex;align-items:center;gap:12px}
-.mobile-menu-links a:hover{background:rgba(245,158,11,0.1);color:var(--primary)}
-
-/* tabs */
-.tab-content{display:none}
-.tab-content.active{display:block}
-.step-content{display:none}
-.step-content.active{display:block}
-
-/* success */
-.success-screen{text-align:center;padding:40px 20px}
-.success-screen .check-icon{width:100px;height:100px;border-radius:50%;background:rgba(16,185,129,0.1);color:var(--success);font-size:50px;display:flex;align-items:center;justify-content:center;margin:0 auto 25px}
-.success-screen h2{font-size:28px;font-weight:800;margin-bottom:10px}
-.success-screen p{color:var(--gray);font-size:16px;margin-bottom:25px}
-</style>
+  <!-- Open Graph / Social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ЕвроСвет Құлсары">
+  <meta property="og:title" content="ЕвроСвет Құлсары | Люстралар мен жарықтандыру дүкені">
+  <meta property="og:description" content="Люстралар, бра, трек жүйелері және сыртқы жарық. Құлсары бойынша жеткізу, Kaspi QR, Kaspi Red / 0-0-12.">
+  <meta property="og:locale" content="kk_KZ">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1543198126-a8ad8e47fb22?auto=format&amp;fit=crop&amp;w=1200&amp;q=80">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ЕвроСвет Құлсары | Люстралар мен жарықтандыру дүкені">
+  <meta name="twitter:description" content="Люстралар, бра, трек жүйелері және сыртқы жарық. Құлсары бойынша жеткізу, Kaspi QR, Kaspi Red / 0-0-12.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1543198126-a8ad8e47fb22?auto=format&amp;fit=crop&amp;w=1200&amp;q=80">
+  
+  <!-- Google Fonts: Montserrat & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ===== TOAST CONTAINER ===== -->
-<div class="toast-container" id="toastContainer"></div>
-
-<!-- ===== TOP BAR ===== -->
-<div class="top-bar">
-<div class="container">
-<div class="left">
-<span class="tag" id="topTag">🔥 ЖЕҢІЛДІКТЕР</span>
-<span><i class="fas fa-truck"></i> <span data-i18n="free_delivery">Тегін жеткізу 50 000₸+</span></span>
-<span><i class="fas fa-phone"></i> +7 (701) 123-45-67</span>
-</div>
-<div class="right">
-<div class="lang-toggle">
-<button class="lang-btn active" onclick="setLang('kk')">ҚАЗ</button>
-<button class="lang-btn" onclick="setLang('ru')">РУС</button>
-</div>
-</div>
-</div>
-</div>
-
-<!-- ===== HEADER ===== -->
-<header class="header">
-<div class="container">
-<a href="#" class="logo">
-<div class="logo-icon"><i class="fas fa-lightbulb"></i></div>
-<div class="logo-text">
-<h1>Евросвет</h1>
-<span data-i18n="tagline">Кульсары — Жарық әлемі</span>
-</div>
-</a>
-<nav class="main-nav">
-<a href="#home" class="nav-link active" data-i18n="nav_home">Басты бет</a>
-<a href="#categories" class="nav-link" data-i18n="nav_cat">Санаттар</a>
-<a href="#products" class="nav-link" data-i18n="nav_prod">Тауарлар</a>
-<a href="#reviews" class="nav-link" data-i18n="nav_rev">Пікірлер</a>
-<a href="#contact" class="nav-link" data-i18n="nav_contact">Байланыс</a>
-</nav>
-<div class="header-actions">
-<div class="search-box">
-<input type="text" placeholder="Іздеу..." data-i18n-placeholder="search_ph" id="searchInput">
-<button><i class="fas fa-search"></i></button>
-</div>
-<button class="icon-btn" onclick="openWishlist()" title="Тілектер">
-<i class="fas fa-heart"></i>
-<span class="badge" id="wishCount">0</span>
-</button>
-<button class="icon-btn" onclick="toggleCart()" title="Себет">
-<i class="fas fa-shopping-cart"></i>
-<span class="badge" id="cartCount">0</span>
-</button>
-<button class="mobile-toggle" onclick="toggleMobileMenu()">
-<i class="fas fa-bars"></i>
-</button>
-</div>
-</div>
-</header>
-
-<!-- ===== MOBILE MENU ===== -->
-<div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
-<div class="mobile-menu" id="mobileMenu">
-<button class="mobile-menu-close" onclick="toggleMobileMenu()"><i class="fas fa-times"></i></button>
-<div class="logo" style="margin-bottom:10px">
-<div class="logo-icon"><i class="fas fa-lightbulb"></i></div>
-<div class="logo-text">
-<h1>Евросвет</h1>
-<span data-i18n="tagline">Кульсары — Жарық әлемі</span>
-</div>
-</div>
-<div class="mobile-menu-links">
-<a href="#home" onclick="toggleMobileMenu()"><i class="fas fa-home"></i> <span data-i18n="nav_home">Басты бет</span></a>
-<a href="#categories" onclick="toggleMobileMenu()"><i class="fas fa-th-large"></i> <span data-i18n="nav_cat">Санаттар</span></a>
-<a href="#products" onclick="toggleMobileMenu()"><i class="fas fa-box"></i> <span data-i18n="nav_prod">Тауарлар</span></a>
-<a href="#reviews" onclick="toggleMobileMenu()"><i class="fas fa-star"></i> <span data-i18n="nav_rev">Пікірлер</span></a>
-<a href="#contact" onclick="toggleMobileMenu()"><i class="fas fa-map-marker-alt"></i> <span data-i18n="nav_contact">Байланыс</span></a>
-<a href="https://wa.me/77011234567" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-<a href="https://www.instagram.com/evrosvet_kulsary/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-</div>
-</div>
-
-<!-- ===== HERO ===== -->
-<section class="hero" id="home">
-<div class="hero-bg"></div>
-<div class="hero-particles">
-<div class="particle" style="top:20%;left:10%;animation-delay:0s"></div>
-<div class="particle" style="top:60%;left:25%;animation-delay:2s"></div>
-<div class="particle" style="top:30%;left:70%;animation-delay:4s"></div>
-<div class="particle" style="top:80%;left:50%;animation-delay:6s"></div>
-<div class="particle" style="top:40%;left:85%;animation-delay:8s"></div>
-<div class="particle" style="top:70%;left:15%;animation-delay:10s"></div>
-</div>
-<div class="container">
-<div class="hero-content">
-<div class="hero-badge"><i class="fas fa-fire"></i> <span data-i18n="hero_badge">Жаңа маусымдық жиынтықтар</span></div>
-<h2 data-i18n="hero_title">Үйіңізді<br><span class="highlight">жаңа жарықпен</span><br>жарықтандырыңыз</h2>
-<p data-i18n="hero_desc">Евросвет Кульсары — заманауи жарықтандыру шешімдері. Люстралар, шамдар, LED жарықтар және тағы басқалар. Сапа мен стиль бір жерде.</p>
-<div class="hero-btns">
-<a href="#products" class="btn btn-primary btn-lg"><i class="fas fa-shopping-bag"></i> <span data-i18n="hero_btn1">Тауарларды көру</span></a>
-<a href="https://wa.me/77011234567" target="_blank" class="btn btn-outline btn-lg"><i class="fab fa-whatsapp"></i> <span data-i18n="hero_btn2">WhatsApp</span></a>
-</div>
-<div class="hero-stats">
-<div class="stat-item">
-<div class="stat-number">500+</div>
-<div class="stat-label" data-i18n="stat1">Тауар түрі</div>
-</div>
-<div class="stat-item">
-<div class="stat-number">2000+</div>
-<div class="stat-label" data-i18n="stat2">Қанағаттанған клиент</div>
-</div>
-<div class="stat-item">
-<div class="stat-number">5+</div>
-<div class="stat-label" data-i18n="stat3">Жыл тәжірибе</div>
-</div>
-</div>
-</div>
-<div class="hero-visual">
-<div class="hero-glow"></div>
-<div class="hero-image"><i class="fas fa-lightbulb"></i></div>
-<div class="hero-floating">
-<div class="icon" style="background:rgba(245,158,11,0.1);color:#f59e0b"><i class="fas fa-shipping-fast"></i></div>
-<div class="info">
-<div class="title" data-i18n="float1_title">Тез жеткізу</div>
-<div class="sub" data-i18n="float1_sub">1-3 күнде</div>
-</div>
-</div>
-<div class="hero-floating">
-<div class="icon" style="background:rgba(16,185,129,0.1);color:#10b981"><i class="fas fa-shield-alt"></i></div>
-<div class="info">
-<div class="title" data-i18n="float2_title">Кепілдік</div>
-<div class="sub" data-i18n="float2_sub">12 ай</div>
-</div>
-</div>
-<div class="hero-floating">
-<div class="icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6"><i class="fas fa-robot"></i></div>
-<div class="info">
-<div class="title" data-i18n="float3_title">AI Кеңесші</div>
-<div class="sub" data-i18n="float3_sub">24/7 онлайн</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ===== FEATURES ===== -->
-<div class="features-bar">
-<div class="container">
-<div class="features-grid">
-<div class="feature-item">
-<div class="feature-icon" style="background:rgba(245,158,11,0.1);color:#f59e0b"><i class="fas fa-truck"></i></div>
-<div class="feature-info">
-<h4 data-i18n="feat1_t">Тегін жеткізу</h4>
-<p data-i18n="feat1_s">50 000₸+ тапсырысқа</p>
-</div>
-</div>
-<div class="feature-item">
-<div class="feature-icon" style="background:rgba(16,185,129,0.1);color:#10b981"><i class="fas fa-certificate"></i></div>
-<div class="feature-info">
-<h4 data-i18n="feat2_t">12 ай кепілдік</h4>
-<p data-i18n="feat2_s">Барлық тауарларға</p>
-</div>
-</div>
-<div class="feature-item">
-<div class="feature-icon" style="background:rgba(59,130,246,0.1);color:#3b82f6"><i class="fas fa-undo-alt"></i></div>
-<div class="feature-info">
-<h4 data-i18n="feat3_t">14 күн қайтару</h4>
-<p data-i18n="feat3_s">Мәселе болса</p>
-</div>
-</div>
-<div class="feature-item">
-<div class="feature-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6"><i class="fas fa-headset"></i></div>
-<div class="feature-info">
-<h4 data-i18n="feat4_t">AI Кеңесші</h4>
-<p data-i18n="feat4_s">Кез келген уақытта</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<!-- ===== CATEGORIES ===== -->
-<section class="section" id="categories">
-<div class="container">
-<div class="section-header">
-<div class="tag"><i class="fas fa-th-large"></i> <span data-i18n="cat_tag">Категориялар</span></div>
-<h2 data-i18n="cat_title">Тауар санаттары</h2>
-<p data-i18n="cat_desc">Кез келген бөлме мен стиль үшін жарықтандыру шешімдері</p>
-</div>
-<div class="categories-grid">
-<div class="category-card" onclick="filterProducts('chandelier')">
-<div class="cat-icon" style="background:rgba(245,158,11,0.1);color:#f59e0b"><i class="fas fa-chandelier" style="font-size:28px">✨</i></div>
-<h3 data-i18n="cat1_t">Люстралар</h3>
-<p data-i18n="cat1_d">Классикалық және заманауи дизайндағы люстралар</p>
-<div class="cat-count"><i class="fas fa-arrow-right"></i> 48+ тауар</div>
-<div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
-</div>
-<div class="category-card" onclick="filterProducts('lamp')">
-<div class="cat-icon" style="background:rgba(59,130,246,0.1);color:#3b82f6"><i class="fas fa-lightbulb"></i></div>
-<h3 data-i18n="cat2_t">Лампалар</h3>
-<p data-i18n="cat2_d">Энергия үнемдейтін LED және қалыпты лампалар</p>
-<div class="cat-count"><i class="fas fa-arrow-right"></i> 65+ тауар</div>
-<div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
-</div>
-<div class="category-card" onclick="filterProducts('led')">
-<div class="cat-icon" style="background:rgba(16,185,129,0.1);color:#10b981"><i class="fas fa-rainbow"></i></div>
-<h3 data-i18n="cat3_t">LED таспалар</h3>
-<p data-i18n="cat3_d">Түрлі түсті және ақ LED таспалар</p>
-<div class="cat-count"><i class="fas fa-arrow-right"></i> 35+ тауар</div>
-<div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
-</div>
-<div class="category-card" onclick="filterProducts('sconce')">
-<div class="cat-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6"><i class="fas fa-hand-sparkles"></i></div>
-<h3 data-i18n="cat4_t">Бра</h3>
-<p data-i18n="cat4_d">Қабырғаға арналған әдемі жарықтар</p>
-<div class="cat-count"><i class="fas fa-arrow-right"></i> 28+ тауар</div>
-<div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
-</div>
-<div class="category-card" onclick="filterProducts('table')">
-<div class="cat-icon" style="background:rgba(245,158,11,0.1);color:#f59e0b"><i class="fas fa-desk"></i></div>
-<h3 data-i18n="cat5_t">Үстел шамдары</h3>
-<p data-i18n="cat5_d">Жұмыс және демалыс үшін</p>
-<div class="cat-count"><i class="fas fa-arrow-right"></i> 22+ тауар</div>
-<div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
-</div>
-<div class="category-card" onclick="filterProducts('ceiling')">
-<div class="cat-icon" style="background:rgba(239,68,68,0.1);color:#ef4444"><i class="fas fa-circle-notch"></i></div>
-<h3 data-i18n="cat6_t">Төбе шамдары</h3>
-<p data-i18n="cat6_d">Заманауи төбе жарықтандырулары</p>
-<div class="cat-count"><i class="fas fa-arrow-right"></i> 40+ тауар</div>
-<div class="cat-arrow"><i class="fas fa-arrow-right"></i></div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ===== PRODUCTS ===== -->
-<section class="section products-section" id="products">
-<div class="container">
-<div class="section-header">
-<div class="tag"><i class="fas fa-fire"></i> <span data-i18n="prod_tag">Танымал тауарлар</span></div>
-<h2 data-i18n="prod_title">Біздің тауарларымыз</h2>
-<p data-i18n="prod_desc">Сапалы жарықтандыру шешімдерінің кең таңдауы</p>
-</div>
-<div class="filter-tabs">
-<button class="filter-btn active" onclick="filterProducts('all')" data-i18n="filter_all">Барлығы</button>
-<button class="filter-btn" onclick="filterProducts('chandelier')" data-i18n="filter_chand">Люстралар</button>
-<button class="filter-btn" onclick="filterProducts('lamp')" data-i18n="filter_lamp">Лампалар</button>
-<button class="filter-btn" onclick="filterProducts('led')" data-i18n="filter_led">LED таспалар</button>
-<button class="filter-btn" onclick="filterProducts('sconce')" data-i18n="filter_sconce">Бра</button>
-<button class="filter-btn" onclick="filterProducts('table')" data-i18n="filter_table">Үстел шамдары</button>
-<button class="filter-btn" onclick="filterProducts('ceiling')" data-i18n="filter_ceil">Төбе</button>
-</div>
-<div class="products-grid" id="productsGrid"></div>
-</div>
-</section>
-
-<!-- ===== PROMO ===== -->
-<section class="promo-section">
-<div class="container">
-<div class="promo-grid">
-<div class="promo-card large" style="background:var(--gradient)">
-<div class="promo-content">
-<div class="tag">🎁 МАУСЫМДЫҚ</div>
-<h3 data-i18n="promo1_t">Барлық жарықтарға<br>30% дейін ЖЕҢІЛДІК</h3>
-<p data-i18n="promo1_d">Асығыңыз! Ұсыныс уақытпен шектеулі</p>
-<a href="#products" class="btn" style="background:#fff;color:var(--dark)"><i class="fas fa-shopping-bag"></i> <span data-i18n="promo1_btn">Дүкенге бару</span></a>
-</div>
-</div>
-<div class="promo-right">
-<div class="promo-card small blue">
-<div class="promo-content">
-<div class="tag">💡 ЖАҢА</div>
-<h3 data-i18n="promo2_t">Smart жарықтар</h3>
-<p data-i18n="promo2_d">Телефонмен басқарылатын</p>
-</div>
-</div>
-<div class="promo-card small green">
-<div class="promo-content">
-<div class="tag">⚡ LED</div>
-<h3 data-i18n="promo3_t">Энергия үнемдеу</h3>
-<p data-i18n="promo3_d">80% дейін үнемдеңіз</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ===== REVIEWS ===== -->
-<section class="section reviews-section" id="reviews">
-<div class="container">
-<div class="section-header">
-<div class="tag"><i class="fas fa-star"></i> <span data-i18n="rev_tag">Пікірлер</span></div>
-<h2 data-i18n="rev_title">Клиенттердің пікірлері</h2>
-<p data-i18n="rev_desc">Біз туралы не айтады?</p>
-</div>
-<div class="reviews-grid" id="reviewsGrid"></div>
-
-<!-- REVIEW FORM -->
-<div class="review-form">
-<h3 data-i18n="rev_form_t">Пікір қалдыру</h3>
-<div class="form-row">
-<div class="form-group">
-<label data-i18n="form_name">Атыңыз</label>
-<input type="text" id="revName" placeholder="Есіміңіз">
-</div>
-<div class="form-group">
-<label data-i18n="form_phone">Телефон</label>
-<input type="tel" id="revPhone" placeholder="+7 (___) ___-__-__">
-</div>
-</div>
-<div class="form-group">
-<label data-i18n="form_rating">Бағалау</label>
-<div class="star-rating-input" id="starRating">
-<i class="fas fa-star" onclick="setRating(1)"></i>
-<i class="fas fa-star" onclick="setRating(2)"></i>
-<i class="fas fa-star" onclick="setRating(3)"></i>
-<i class="fas fa-star" onclick="setRating(4)"></i>
-<i class="fas fa-star" onclick="setRating(5)"></i>
-</div>
-</div>
-<div class="form-group">
-<label data-i18n="form_comment">Пікіріңіз</label>
-<textarea id="revComment" placeholder="Пікіріңізді жазыңыз..." data-i18n-placeholder="form_comment_ph"></textarea>
-</div>
-<button class="btn btn-primary btn-lg" onclick="submitReview()"><i class="fas fa-paper-plane"></i> <span data-i18n="form_submit">Пікір жіберу</span></button>
-</div>
-</div>
-</section>
-
-<!-- ===== CONTACT / MAP ===== -->
-<section class="section contact-section" id="contact">
-<div class="container">
-<div class="section-header">
-<div class="tag"><i class="fas fa-map-marker-alt"></i> <span data-i18n="contact_tag">Байланыс</span></div>
-<h2 data-i18n="contact_title">Бізді табыңыз</h2>
-<p data-i18n="contact_desc">Кульсары қаласындағы мекенжайымыз бен байланыс ақпараттары</p>
-</div>
-<div class="contact-grid">
-<div class="contact-info">
-<h3 data-i18n="contact_info_t">Байланыс ақпараттары</h3>
-<div class="contact-item">
-<div class="ci-icon" style="background:rgba(245,158,11,0.1);color:#f59e0b"><i class="fas fa-map-marker-alt"></i></div>
-<div class="ci-info">
-<h4 data-i18n="ci_address_t">Мекенжай</h4>
-<p>г. Кульсары, ул. Кенесары 45</p>
-</div>
-</div>
-<div class="contact-item">
-<div class="ci-icon" style="background:rgba(16,185,129,0.1);color:#10b981"><i class="fas fa-phone"></i></div>
-<div class="ci-info">
-<h4 data-i18n="ci_phone_t">Телефон</h4>
-<p><a href="tel:+77011234567">+7 (701) 123-45-67</a></p>
-<p><a href="tel:+77021234567">+7 (702) 123-45-67</a></p>
-</div>
-</div>
-<div class="contact-item">
-<div class="ci-icon" style="background:rgba(59,130,246,0.1);color:#3b82f6"><i class="fas fa-clock"></i></div>
-<div class="ci-info">
-<h4 data-i18n="ci_hours_t">Жұмыс уақыты</h4>
-<p data-i18n="ci_hours_v">Дс-Сб: 09:00 — 20:00</p>
-<p data-i18n="ci_hours_v2">Жк: 10:00 — 18:00</p>
-</div>
-</div>
-<div class="contact-item">
-<div class="ci-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6"><i class="fab fa-instagram"></i></div>
-<div class="ci-info">
-<h4>Instagram</h4>
-<p><a href="https://www.instagram.com/evrosvet_kulsary/" target="_blank">@evrosvet_kulsary</a></p>
-</div>
-</div>
-<div class="contact-item">
-<div class="ci-icon" style="background:rgba(37,211,102,0.1);color:#25d366"><i class="fab fa-whatsapp"></i></div>
-<div class="ci-info">
-<h4>WhatsApp</h4>
-<p><a href="https://wa.me/77011234567" target="_blank">+7 (701) 123-45-67</a></p>
-</div>
-</div>
-</div>
-<div class="map-container">
-<iframe src="https://2gis.kz/kulsary/geo/7485589015207212?m=51.26333%2C57.158486%2F16" allowfullscreen loading="lazy"></iframe>
-<div class="map-overlay">
-<div class="mo-icon"><i class="fas fa-store"></i></div>
-<div class="mo-info">
-<h4>Евросвет Кульсары</h4>
-<p>г. Кульсары, ул. Кенесары 45</p>
-</div>
-<a href="https://2gis.kz/kulsary" target="_blank" class="mo-btn"><i class="fas fa-directions"></i> <span data-i18n="map_route">Маршрут</span></a>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!-- ===== SOCIAL CTA ===== -->
-<section class="social-cta">
-<div class="container">
-<h2 data-i18n="social_title">Бізді әлеуметтік желілерде қадағалаңыз</h2>
-<p data-i18n="social_desc">Жаңа тауарлар, жарнамалар және кеңестер — бізден кешікпей алыңыз!</p>
-<div class="social-btns">
-<a href="https://www.instagram.com/evrosvet_kulsary/" target="_blank" class="social-btn instagram">
-<i class="fab fa-instagram"></i> Instagram
-</a>
-<a href="https://wa.me/77011234567" target="_blank" class="social-btn whatsapp">
-<i class="fab fa-whatsapp"></i> WhatsApp
-</a>
-<a href="https://t.me/evrosvet_kulsary" target="_blank" class="social-btn telegram">
-<i class="fab fa-telegram-plane"></i> Telegram
-</a>
-</div>
-</div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-<div class="container">
-<div class="footer-grid">
-<div class="footer-about">
-<div class="logo">
-<div class="logo-icon"><i class="fas fa-lightbulb"></i></div>
-<div class="logo-text">
-<h1 style="-webkit-text-fill-color:#fff">Евросвет</h1>
-<span style="color:#94a3b8">Кульсары</span>
-</div>
-</div>
-<p data-i18n="footer_about">Евросвет Кульсары — сапалы жарықтандыру шешімдерінің сенімді жеткізушісі. 5 жылдан астам тәжірибе мен 2000+ қанағаттанған клиенттер.</p>
-<div class="footer-social">
-<a href="https://www.instagram.com/evrosvet_kulsary/" target="_blank" class="fs-btn"><i class="fab fa-instagram"></i></a>
-<a href="https://wa.me/77011234567" target="_blank" class="fs-btn"><i class="fab fa-whatsapp"></i></a>
-<a href="https://t.me/evrosvet_kulsary" target="_blank" class="fs-btn"><i class="fab fa-telegram-plane"></i></a>
-<a href="https://2gis.kz/kulsary" target="_blank" class="fs-btn"><i class="fas fa-map-marker-alt"></i></a>
-</div>
-</div>
-<div class="footer-links">
-<h4 data-i18n="footer_links1">Сілтемелер</h4>
-<ul>
-<li><a href="#home"><i class="fas fa-chevron-right"></i> <span data-i18n="nav_home">Басты бет</span></a></li>
-<li><a href="#categories"><i class="fas fa-chevron-right"></i> <span data-i18n="nav_cat">Санаттар</span></a></li>
-<li><a href="#products"><i class="fas fa-chevron-right"></i> <span data-i18n="nav_prod">Тауарлар</span></a></li>
-<li><a href="#reviews"><i class="fas fa-chevron-right"></i> <span data-i18n="nav_rev">Пікірлер</span></a></li>
-<li><a href="#contact"><i class="fas fa-chevron-right"></i> <span data-i18n="nav_contact">Байланыс</span></a></li>
-</ul>
-</div>
-<div class="footer-links">
-<h4 data-i18n="footer_links2">Санаттар</h4>
-<ul>
-<li><a href="#products" onclick="filterProducts('chandelier')"><i class="fas fa-chevron-right"></i> <span data-i18n="cat1_t">Люстралар</span></a></li>
-<li><a href="#products" onclick="filterProducts('lamp')"><i class="fas fa-chevron-right"></i> <span data-i18n="cat2_t">Лампалар</span></a></li>
-<li><a href="#products" onclick="filterProducts('led')"><i class="fas fa-chevron-right"></i> <span data-i18n="cat3_t">LED таспалар</span></a></li>
-<li><a href="#products" onclick="filterProducts('sconce')"><i class="fas fa-chevron-right"></i> <span data-i18n="cat4_t">Бра</span></a></li>
-<li><a href="#products" onclick="filterProducts('ceiling')"><i class="fas fa-chevron-right"></i> <span data-i18n="cat6_t">Төбе шамдары</span></a></li>
-</ul>
-</div>
-<div class="footer-newsletter">
-<h4 data-i18n="footer_news_t">Хабарламаға жазылу</h4>
-<p data-i18n="footer_news_d">Жаңа тауарлар мен жарнамалар туралы бірінші болып біліңіз</p>
-<div class="newsletter-form">
-<input type="email" placeholder="Email мекенжайыңыз" id="newsletterEmail">
-<button onclick="subscribeNewsletter()"><i class="fas fa-paper-plane"></i></button>
-</div>
-<div class="footer-contacts">
-<div class="fc-item"><i class="fas fa-phone"></i> +7 (701) 123-45-67</div>
-<div class="fc-item"><i class="fas fa-envelope"></i> evrosvet.kulsary@mail.ru</div>
-<div class="fc-item"><i class="fas fa-map-marker-alt"></i> г. Кульсары, ул. Кенесары 45</div>
-<div class="fc-item"><i class="fas fa-clock"></i> <span data-i18n="ci_hours_v">Дс-Сб: 09:00 — 20:00</span></div>
-</div>
-</div>
-</div>
-<div class="footer-bottom">
-<p>© 2024 Евросвет Кульсары. <span data-i18n="footer_rights">Барлық құқықтар қорғалған</span>.</p>
-<div class="footer-bottom-links">
-<a href="#" data-i18n="footer_terms">Ережелер</a>
-<a href="#" data-i18n="footer_privacy">Құпиялылық</a>
-</div>
-</div>
-</div>
-</footer>
-
-<!-- ===== CART SIDEBAR ===== -->
-<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
-<div class="cart-sidebar" id="cartSidebar">
-<div class="cart-header">
-<h3><i class="fas fa-shopping-cart"></i> <span data-i18n="cart_title">Себет</span></h3>
-<button class="cart-close" onclick="toggleCart()"><i class="fas fa-times"></i></button>
-</div>
-<div class="cart-items" id="cartItems">
-<div class="empty-cart" id="emptyCart">
-<div class="icon">🛒</div>
-<h3 data-i18n="cart_empty_t">Себет бос</h3>
-<p data-i18n="cart_empty_d">Тауарларды қосыңыз және тапсырыс беріңіз</p>
-<button class="btn btn-primary" onclick="toggleCart();filterProducts('all')"><i class="fas fa-shopping-bag"></i> <span data-i18n="cart_empty_btn">Сатып алу</span></button>
-</div>
-</div>
-<div class="cart-footer" id="cartFooter" style="display:none">
-<div class="cart-summary">
-<div class="summary-row">
-<span data-i18n="cart_subtotal">Жалпы сома:</span>
-<span id="cartSubtotal">0 ₸</span>
-</div>
-<div class="summary-row">
-<span data-i18n="cart_delivery">Жеткізу:</span>
-<span id="cartDelivery" style="color:var(--success)" data-i18n="free">Тегін</span>
-</div>
-<div class="summary-row">
-<span data-i18n="cart_discount">Жеңілдік:</span>
-<span id="cartDiscount" style="color:var(--success)">-0 ₸</span>
-</div>
-<div class="summary-row total">
-<span data-i18n="cart_total">ТОТАЛ:</span>
-<span class="price" id="cartTotal">0 ₸</span>
-</div>
-</div>
-<button class="btn btn-primary btn-lg btn-block" onclick="openCheckout()"><i class="fas fa-lock"></i> <span data-i18n="cart_checkout">Тапсырыс беру</span></button>
-<button class="btn btn-danger btn-block btn-sm" onclick="clearCart()" style="margin-top:10px"><i class="fas fa-trash"></i> <span data-i18n="cart_clear">Себетті тазарту</span></button>
-</div>
-</div>
-
-<!-- ===== CHECKOUT MODAL ===== -->
-<div class="modal-overlay" id="checkoutModal">
-<div class="modal">
-<div class="modal-header">
-<h3><i class="fas fa-clipboard-check"></i> <span data-i18n="checkout_title">Тапсырыс рәсімдеу</span></h3>
-<button class="cart-close" onclick="closeCheckout()"><i class="fas fa-times"></i></button>
-</div>
-<div class="modal-body light">
-<div class="checkout-steps">
-<div class="step active" id="step1"><div class="step-num">1</div><div data-i18n="step1">Жеке деректер</div></div>
-<div class="step" id="step2"><div class="step-num">2</div><div data-i18n="step2">Жеткізу</div></div>
-<div class="step" id="step3"><div class="step-num">3</div><div data-i18n="step3">Төлеу</div></div>
-<div class="step" id="step4"><div class="step-num">4</div><div data-i18n="step4">Растау</div></div>
-</div>
-
-<!-- Step 1 -->
-<div class="step-content active" id="stepContent1">
-<div class="checkout-form">
-<div class="form-row">
-<div class="form-group">
-<label data-i18n="form_name">Атыңыз</label>
-<input type="text" id="coName" placeholder="Есіміңіз">
-</div>
-<div class="form-group">
-<label data-i18n="form_phone">Телефон</label>
-<input type="tel" id="coPhone" placeholder="+7 (___) ___-__-__">
-</div>
-</div>
-<div class="form-group">
-<label data-i18n="form_email">Email</label>
-<input type="email" id="coEmail" placeholder="email@example.com">
-</div>
-<div class="form-group">
-<label data-i18n="form_comment">Түсініктеме</label>
-<textarea id="coComment" placeholder="Қосымша ақпарат..." rows="3"></textarea>
-</div>
-</div>
-<button class="btn btn-primary btn-lg btn-block" onclick="nextStep(2)"><i class="fas fa-arrow-right"></i> <span data-i18n="btn_next">Келесі</span></button>
-</div>
-
-<!-- Step 2 -->
-<div class="step-content" id="stepContent2">
-<div class="checkout-form">
-<div class="delivery-options">
-<div class="delivery-opt selected" onclick="selectDelivery(this, 'pickup')" data-price="0">
-<div class="do-icon">🏪</div>
-<h4 data-i18n="delivery_pickup">Дүкеннен алу</h4>
-<p data-i18n="delivery_pickup_d">Тегін • дайын 1 сағатта</p>
-</div>
-<div class="delivery-opt" onclick="selectDelivery(this, 'city')" data-price="500">
-<div class="do-icon">🚚</div>
-<h4 data-i18n="delivery_city">Қала ішінде</h4>
-<p>500 ₸ • 1 күнде</p>
-</div>
-<div class="delivery-opt" onclick="selectDelivery(this, 'region')" data-price="1500">
-<div class="do-icon">🚛</div>
-<h4 data-i18n="delivery_region">Облысқа</h4>
-<p>1 500 ₸ • 2-3 күнде</p>
-</div>
-<div class="delivery-opt" onclick="selectDelivery(this, 'express')" data-price="2000">
-<div class="do-icon">⚡</div>
-<h4 data-i18n="delivery_express">Жедел жеткізу</h4>
-<p>2 000 ₸ • бүгін</p>
-</div>
-</div>
-<div class="form-group">
-<label data-i18n="form_address">Мекенжай</label>
-<input type="text" id="coAddress" placeholder="Көше, үй, пәтер" data-i18n-placeholder="form_address_ph">
-</div>
-<div class="form-group">
-<label data-i18n="form_city">Қала</label>
-<input type="text" id="coCity" value="Кульсары">
-</div>
-</div>
-<div style="display:flex;gap:15px">
-<button class="btn btn-dark btn-lg" style="flex:1" onclick="nextStep(1)"><i class="fas fa-arrow-left"></i> <span data-i18n="btn_back">Артқа</span></button>
-<button class="btn btn-primary btn-lg" style="flex:2" onclick="nextStep(3)"><i class="fas fa-arrow-right"></i> <span data-i18n="btn_next">Келесі</span></button>
-</div>
-</div>
-
-<!-- Step 3 -->
-<div class="step-content" id="stepContent3">
-<div class="checkout-form">
-<div class="payment-options">
-<div class="payment-opt selected" onclick="selectPayment(this, 'cash')">
-<div class="po-icon" style="background:rgba(16,185,129,0.1);color:#10b981"><i class="fas fa-money-bill-wave"></i></div>
-<div>
-<h4 data-i18n="pay_cash">Қолма-қол ақша</h4>
-<p data-i18n="pay_cash_d">Алғанда төлеу</p>
-</div>
-</div>
-<div class="payment-opt" onclick="selectPayment(this, 'card')">
-<div class="po-icon" style="background:rgba(59,130,246,0.1);color:#3b82f6"><i class="fas fa-credit-card"></i></div>
-<div>
-<h4 data-i18n="pay_card">Банк картасы</h4>
-<p data-i18n="pay_card_d">Kaspi / Halyk / Басқа</p>
-</div>
-</div>
-<div class="payment-opt" onclick="selectPayment(this, 'kaspi')">
-<div class="po-icon" style="background:rgba(245,158,11,0.1);color:#f59e0b"><i class="fas fa-qrcode"></i></div>
-<div>
-<h4>Kaspi QR</h4>
-<p data-i18n="pay_kaspi_d">QR код арқылы төлеу</p>
-</div>
-</div>
-<div class="payment-opt" onclick="selectPayment(this, 'transfer')">
-<div class="po-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6"><i class="fas fa-university"></i></div>
-<div>
-<h4 data-i18n="pay_transfer">Аударым</h4>
-<p data-i18n="pay_transfer_d">Банк арқылы аударым</p>
-</div>
-</div>
-</div>
-</div>
-<div style="display:flex;gap:15px">
-<button class="btn btn-dark btn-lg" style="flex:1" onclick="nextStep(2)"><i class="fas fa-arrow-left"></i> <span data-i18n="btn_back">Артқа</span></button>
-<button class="btn btn-primary btn-lg" style="flex:2" onclick="nextStep(4)"><i class="fas fa-arrow-right"></i> <span data-i18n="btn_next">Келесі</span></button>
-</div>
-</div>
-
-<!-- Step 4 -->
-<div class="step-content" id="stepContent4">
-<div id="orderSummary"></div>
-<div style="display:flex;gap:15px;margin-top:25px">
-<button class="btn btn-dark btn-lg" style="flex:1" onclick="nextStep(3)"><i class="fas fa-arrow-left"></i> <span data-i18n="btn_back">Артқа</span></button>
-<button class="btn btn-success btn-lg" style="flex:2" onclick="placeOrder()"><i class="fas fa-check"></i> <span data-i18n="btn_confirm">Тапсырысты растау</span></button>
-</div>
-</div>
-
-<!-- Success -->
-<div class="step-content" id="stepContent5">
-<div class="success-screen">
-<div class="check-icon"><i class="fas fa-check"></i></div>
-<h2 data-i18n="success_title">Тапсырыс қабылданды! ✅</h2>
-<p data-i18n="success_desc">Сіздің тапсырысыңыз өңделуде. Біз жақын арада хабарласамыз.</p>
-<div id="orderNumber" style="font-size:18px;font-weight:700;margin-bottom:25px"></div>
-<button class="btn btn-primary btn-lg" onclick="closeCheckout();location.reload()"><i class="fas fa-home"></i> <span data-i18n="btn_home">Басты бетке</span></button>
-</div>
-</div>
-
-</div>
-</div>
-</div>
-
-<!-- ===== AI CHAT ===== -->
-<button class="ai-chat-btn" onclick="toggleAIChat()">
-<i class="fas fa-robot"></i>
-<div class="notification"></div>
-</button>
-<div class="ai-chat-panel" id="aiChatPanel">
-<div class="ai-chat-header">
-<div class="ai-avatar"><i class="fas fa-robot"></i></div>
-<div class="ai-info">
-<h4 data-i18n="ai_title">AI Кеңесші</h4>
-<div class="ai-status"><div class="dot"></div> <span data-i18n="ai_online">Онлайн</span></div>
-</div>
-<div class="ai-chat-close" onclick="toggleAIChat()"><i class="fas fa-times"></i></div>
-</div>
-<div class="ai-chat-messages" id="aiMessages"></div>
-<div class="ai-quick-actions">
-<button class="quick-btn" onclick="aiQuick('hello')">👋 Сәлеметсіз бе</button>
-<button class="quick-btn" onclick="aiQuick('recommend')">💡 Кеңес керек</button>
-<button class="quick-btn" onclick="aiQuick('price')">💰 Бағалар</button>
-<button class="quick-btn" onclick="aiQuick('delivery')">🚚 Жеткізу</button>
-<button class="quick-btn" onclick="aiQuick('contact')">📞 Байланыс</button>
-</div>
-<div class="ai-chat-input">
-<textarea id="aiInput" placeholder="Хабарлама жазыңыз..." rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAIMessage()}"></textarea>
-<button class="ai-send-btn" onclick="sendAIMessage()"><i class="fas fa-paper-plane"></i></button>
-</div>
-</div>
-
-<!-- ===== SCROLL TOP ===== -->
-<div class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-<i class="fas fa-arrow-up"></i>
-</div>
-
-<script>
-// ===== DATA =====
-const translations = {
-kk: {
-topTag: '🔥 ЖЕҢІЛДІКТЕР',
-free_delivery: 'Тегін жеткізу 50 000₸+',
-tagline: 'Кульсары — Жарық әлемі',
-nav_home: 'Басты бет',
-nav_cat: 'Санаттар',
-nav_prod: 'Тауарлар',
-nav_rev: 'Пікірлер',
-nav_contact: 'Байланыс',
-search_ph: 'Іздеу...',
-hero_badge: 'Жаңа маусымдық жиынтықтар',
-hero_title: 'Үйіңізді<br><span class="highlight">жаңа жарықпен</span><br>жарықтандырыңыз',
-hero_desc: 'Евросвет Кульсары — заманауи жарықтандыру шешімдері. Люстралар, шамдар, LED жарықтар және тағы басқалар. Сапа мен стиль бір жерде.',
-hero_btn1: 'Тауарларды көру',
-hero_btn2: 'WhatsApp',
-stat1: 'Тауар түрі',
-stat2: 'Қанағаттанған клиент',
-stat3: 'Жыл тәжірибе',
-float1_title: 'Тез жеткізу', float1_sub: '1-3 күнде',
-float2_title: 'Кепілдік', float2_sub: '12 ай',
-float3_title: 'AI Кеңесші', float3_sub: '24/7 онлайн',
-feat1_t: 'Тегін жеткізу', feat1_s: '50 000₸+ тапсырысқа',
-feat2_t: '12 ай кепілдік', feat2_s: 'Барлық тауарларға',
-feat3_t: '14 күн қайтару', feat3_s: 'Мәселе болса',
-feat4_t: 'AI Кеңесші', feat4_s: 'Кез келген уақытта',
-cat_tag: 'Категориялар',
-cat_title: 'Тауар санаттары',
-cat_desc: 'Кез келген бөлме мен стиль үшін жарықтандыру шешімдері',
-cat1_t: 'Люстралар', cat1_d: 'Классикалық және заманауи дизайндағы люстралар',
-cat2_t: 'Лампалар', cat2_d: 'Энергия үнемдейтін LED және қалыпты лампалар',
-cat3_t: 'LED таспалар', cat3_d: 'Түрлі түсті және ақ LED таспалар',
-cat4_t: 'Бра', cat4_d: 'Қабырғаға арналған әдемі жарықтар',
-cat5_t: 'Үстел шамдары', cat5_d: 'Жұмыс және демалыс үшін',
-cat6_t: 'Төбе шамдары', cat6_d: 'Заманауи төбе жарықтандырулары',
-prod_tag: 'Танымал тауарлар',
-prod_title: 'Біздің тауарларымыз',
-prod_desc: 'Сапалы жарықтандыру шешімдерінің кең таңдауы',
-filter_all: 'Барлығы', filter_chand: 'Люстралар', filter_lamp: 'Лампалар',
-filter_led: 'LED таспалар', filter_sconce: 'Бра', filter_table: 'Үстел шамдары', filter_ceil: 'Төбе',
-promo1_t: 'Барлық жарықтарға<br>30% дейін ЖЕҢІЛДІК',
-promo1_d: 'Асығыңыз! Ұсыныс уақытпен шектеулі',
-promo1_btn: 'Дүкенге бару',
-promo2_t: 'Smart жарықтар', promo2_d: 'Телефонмен басқарылатын',
-promo3_t: 'Энергия үнемдеу', promo3_d: '80% дейін үнемдеңіз',
-rev_tag: 'Пікірлер',
-rev_title: 'Клиенттердің пікірлері',
-rev_desc: 'Біз туралы не айтады?',
-rev_form_t: 'Пікір қалдыру',
-form_name: 'Атыңыз', form_phone: 'Телефон', form_email: 'Email',
-form_rating: 'Бағалау', form_comment: 'Пікіріңіз', form_comment_ph: 'Пікіріңізді жазыңыз...',
-form_submit: 'Пікір жіберу', form_address: 'Мекенжай', form_address_ph: 'Көше, үй, пәтер',
-form_city: 'Қала',
-contact_tag: 'Байланыс',
-contact_title: 'Бізді табыңыз',
-contact_desc: 'Кульсары қаласындағы мекенжайымыз бен байланыс ақпараттары',
-contact_info_t: 'Байланыс ақпараттары',
-ci_address_t: 'Мекенжай', ci_phone_t: 'Телефон',
-ci_hours_t: 'Жұмыс уақыты', ci_hours_v: 'Дс-Сб: 09:00 — 20:00', ci_hours_v2: 'Жк: 10:00 — 18:00',
-map_route: 'Маршрут',
-social_title: 'Бізді әлеуметтік желілерде қадағалаңыз',
-social_desc: 'Жаңа тауарлар, жарнамалар және кеңестер — бізден кешікпей алыңыз!',
-footer_about: 'Евросвет Кульсары — сапалы жарықтандыру шешімдерінің сенімді жеткізушісі. 5 жылдан астам тәжірибе мен 2000+ қанағаттанған клиенттер.',
-footer_links1: 'Сілтемелер', footer_links2: 'Санаттар',
-footer_news_t: 'Хабарламаға жазылу',
-footer_news_d: 'Жаңа тауарлар мен жарнамалар туралы бірінші болып біліңіз',
-footer_rights: 'Барлық құқықтар қорғалған',
-footer_terms: 'Ережелер', footer_privacy: 'Құпиялылық',
-cart_title: 'Себет', cart_empty_t: 'Себет бос', cart_empty_d: 'Тауарларды қосыңыз және тапсырыс беріңіз',
-cart_empty_btn: 'Сатып алу',
-cart_subtotal: 'Жалпы сома:', cart_delivery: 'Жеткізу:', cart_discount: 'Жеңілдік:', cart_total: 'ТОТАЛ:',
-free: 'Тегін',
-cart_checkout: 'Тапсырыс беру', cart_clear: 'Себетті тазарту',
-checkout_title: 'Тапсырыс рәсімдеу',
-step1: 'Жеке деректер', step2: 'Жеткізу', step3: 'Төлеу', step4: 'Растау',
-delivery_pickup: 'Дүкеннен алу', delivery_pickup_d: 'Тегін • дайын 1 сағатта',
-delivery_city: 'Қала ішінде', delivery_region: 'Облысқа', delivery_express: 'Жедел жеткізу',
-pay_cash: 'Қолма-қол ақша', pay_cash_d: 'Алғанда төлеу',
-pay_card: 'Банк картасы', pay_card_d: 'Kaspi / Halyk / Басқа',
-pay_kaspi_d: 'QR код арқылы төлеу',
-pay_transfer: 'Аударым', pay_transfer_d: 'Банк арқылы аударым',
-btn_next: 'Келесі', btn_back: 'Артқа', btn_confirm: 'Тапсырысты растау',
-btn_home: 'Басты бетке',
-success_title: 'Тапсырыс қабылданды! ✅',
-success_desc: 'Сіздің тапсырысыңыз өңделуде. Біз жақын арада хабарласамыз.',
-ai_title: 'AI Кеңесші', ai_online: 'Онлайн',
-add_to_cart: 'Себетке қосу', added: 'Қосылды ✓',
-wish_add: 'Тілекке қосу',
-order_total: 'Жалпы:', delivery_fee: 'Жеткізу:', total_pay: 'Төлеу сомасы:',
-order_items: 'Тауарлар:',
-checkout_name: 'Аты:', checkout_phone: 'Телефон:', checkout_address: 'Мекенжай:',
-checkout_delivery: 'Жеткізу:', checkout_payment: 'Төлеу:',
-delivery_p: 'Дүкеннен алу', delivery_c: 'Қала ішінде', delivery_r: 'Облысқа', delivery_e: 'Жедел',
-pay_c: 'Қолма-қол ақша', pay_cd: 'Банк картасы', pay_k: 'Kaspi QR', pay_t: 'Аударым',
-review_added: 'Пікіріңіз сәтті қосылды!',
-newsletter_ok: 'Сәтті жазылдыңыз!',
-order_id: 'Тапсырыс №:',
-review_by: 'Пікір:',
-suggest_ai: 'Мен сізге тауар таңдауға көмектесемін! Кай бөлме үшін жарық іздейсіз?',
-ai_hello: 'Сәлеметсіз бе! Мен — Евросветтің AI кеңесшісімін. Сізге қалай көмектесе аламын? 💡',
-ai_hello2: 'Сәлеметсіз бе! Мен сізге тауар таңдауға көмектесемін. Кай бөлме үшін жарық іздейсіз? 💡',
-ai_recommend: 'Мен сізге тауар таңдауға көмектесемін! Қай бөлме үшін жарық іздейсіз? Қонақ бөлме, ас үй, жатын бөлме немесе балалар бөлмесі? 💡',
-ai_price: 'Біздің бағаларымыз өте қолжетімді! Лампалар 500₸-ден, люстралар 15 000₸-ден басталады. Толық тізімді көру үшін "Тауарлар" бөліміне өтіңіз. 💰',
-ai_delivery: 'Жеткізу туралы: Дүкеннен алу — тегін, қала ішінде — 500₸, облысқа — 1 500₸, жедел — 2 000₸. 50 000₸+ тапсырысқа тегін жеткізу! 🚚',
-ai_contact: 'Бізбен байланысыңыз: 📞 +7 (701) 123-45-67, 💬 WhatsApp, 📸 Instagram @evrosvet_kulsary. Кульсары, ул. Кенесары 45. 📍',
-ai_default: 'Сұрағыңыз үшін рахмет! Мен сізге көмектесуге дайынмын. Тауар таңдау, бағалар, жеткізу немесе басқа сұрақтар бойынша көмектесе аламын. 😊',
-},
-ru: {
-topTag: '🔥 СКИДКИ',
-free_delivery: 'Бесплатная доставка 50 000₸+',
-tagline: 'Кульсары — Мир света',
-nav_home: 'Главная',
-nav_cat: 'Категории',
-nav_prod: 'Товары',
-nav_rev: 'Отзывы',
-nav_contact: 'Контакты',
-search_ph: 'Поиск...',
-hero_badge: 'Новые сезонные коллекции',
-hero_title: 'Осветите ваш дом<br><span class="highlight">новым светом</span>',
-hero_desc: 'Евросвет Кульсары — современные решения освещения. Люстры, лампы, LED подсветки и многое другое. Качество и стиль в одном месте.',
-hero_btn1: 'Смотреть товары',
-hero_btn2: 'WhatsApp',
-stat1: 'Видов товаров',
-stat2: 'Довольных клиентов',
-stat3: 'Лет опыта',
-float1_title: 'Быстрая доставка', float1_sub: 'За 1-3 дня',
-float2_title: 'Гарантия', float2_sub: '12 месяцев',
-float3_title: 'AI Консультант', float3_sub: '24/7 онлайн',
-feat1_t: 'Бесплатная доставка', feat1_s: 'При заказе от 50 000₸',
-feat2_t: 'Гарантия 12 мес.', feat2_s: 'На все товары',
-feat3_t: 'Возврат 14 дней', feat3_s: 'Если есть проблема',
-feat4_t: 'AI Консультант', feat4_s: 'В любое время',
-cat_tag: 'Категории',
-cat_title: 'Категории товаров',
-cat_desc: 'Решения освещения для любой комнаты и стиля',
-cat1_t: 'Люстры', cat1_d: 'Классические и современные люстры',
-cat2_t: 'Лампы', cat2_d: 'Энергосберегающие LED и обычные лампы',
-cat3_t: 'LED ленты', cat3_d: 'Разноцветные и белые LED ленты',
-cat4_t: 'Бра', cat4_d: 'Красивые настенные светильники',
-cat5_t: 'Настольные лампы', cat5_d: 'Для работы и отдыха',
-cat6_t: 'Потолочные светильники', cat6_d: 'Современные потолочные светильники',
-prod_tag: 'Популярные товары',
-prod_title: 'Наши товары',
-prod_desc: 'Широкий выбор качественных решений освещения',
-filter_all: 'Все', filter_chand: 'Люстры', filter_lamp: 'Лампы',
-filter_led: 'LED ленты', filter_sconce: 'Бра', filter_table: 'Настольные', filter_ceil: 'Потолочные',
-promo1_t: 'СКИДКА до 30%<br>на все светильники',
-promo1_d: 'Успейте! Предложение ограничено по времени',
-promo1_btn: 'В магазин',
-promo2_t: 'Smart светильники', promo2_d: 'Управление с телефона',
-promo3_t: 'Экономия энергии', promo3_d: 'Сэкономьте до 80%',
-rev_tag: 'Отзывы',
-rev_title: 'Отзывы клиентов',
-rev_desc: 'Что о нас говорят?',
-rev_form_t: 'Оставить отзыв',
-form_name: 'Ваше имя', form_phone: 'Телефон', form_email: 'Email',
-form_rating: 'Оценка', form_comment: 'Ваш отзыв', form_comment_ph: 'Напишите ваш отзыв...',
-form_submit: 'Отправить отзыв', form_address: 'Адрес', form_address_ph: 'Улица, дом, квартира',
-form_city: 'Город',
-contact_tag: 'Контакты',
-contact_title: 'Найдите нас',
-contact_desc: 'Наш адрес и контактная информация в городе Кульсары',
-contact_info_t: 'Контактная информация',
-ci_address_t: 'Адрес', ci_phone_t: 'Телефон',
-ci_hours_t: 'Время работы', ci_hours_v: 'Пн-Сб: 09:00 — 20:00', ci_hours_v2: 'Вс: 10:00 — 18:00',
-map_route: 'Маршрут',
-social_title: 'Подпишитесь на нас в соцсетях',
-social_desc: 'Новинки, акции и советы — получайте первыми!',
-footer_about: 'Евросвет Кульсары — надёжный поставитель качественных решений освещения. Более 5 лет опыта и 2000+ довольных клиентов.',
-footer_links1: 'Ссылки', footer_links2: 'Категории',
-footer_news_t: 'Подписка на новости',
-footer_news_d: 'Узнавайте первыми о новых товарах и акциях',
-footer_rights: 'Все права защищены',
-footer_terms: 'Условия', footer_privacy: 'Конфиденциальность',
-cart_title: 'Корзина', cart_empty_t: 'Корзина пуста', cart_empty_d: 'Добавьте товары и оформите заказ',
-cart_empty_btn: 'Купить',
-cart_subtotal: 'Подытог:', cart_delivery: 'Доставка:', cart_discount: 'Скидка:', cart_total: 'ИТОГО:',
-free: 'Бесплатно',
-cart_checkout: 'Оформить заказ', cart_clear: 'Очистить корзину',
-checkout_title: 'Оформление заказа',
-step1: 'Личные данные', step2: 'Доставка', step3: 'Оплата', step4: 'Подтверждение',
-delivery_pickup: 'Самовывоз', delivery_pickup_d: 'Бесплатно • готово за 1 час',
-delivery_city: 'По городу', delivery_region: 'В область', delivery_express: 'Экспресс доставка',
-pay_cash: 'Наличные', pay_cash_d: 'Оплата при получении',
-pay_card: 'Банковская карта', pay_card_d: 'Kaspi / Halyk / Другие',
-pay_kaspi_d: 'Оплата через QR код',
-pay_transfer: 'Перевод', pay_transfer_d: 'Банковский перевод',
-btn_next: 'Далее', btn_back: 'Назад', btn_confirm: 'Подтвердить заказ',
-btn_home: 'На главную',
-success_title: 'Заказ принят! ✅',
-success_desc: 'Ваш заказ обрабатывается. Мы свяжемся с вами в ближайшее время.',
-ai_title: 'AI Консультант', ai_online: 'Онлайн',
-add_to_cart: 'В корзину', added: 'Добавлено ✓',
-wish_add: 'В избранное',
-order_total: 'Сумма:', delivery_fee: 'Доставка:', total_pay: 'К оплате:',
-order_items: 'Товары:',
-checkout_name: 'Имя:', checkout_phone: 'Телефон:', checkout_address: 'Адрес:',
-checkout_delivery: 'Доставка:', checkout_payment: 'Оплата:',
-delivery_p: 'Самовывоз', delivery_c: 'По городу', delivery_r: 'В область', delivery_e: 'Экспресс',
-pay_c: 'Наличные', pay_cd: 'Карта', pay_k: 'Kaspi QR', pay_t: 'Перевод',
-review_added: 'Ваш отзыв успешно добавлен!',
-newsletter_ok: 'Вы успешно подписались!',
-order_id: 'Заказ №:',
-review_by: 'Отзыв:',
-suggest_ai: 'Я помогу вам подобрать товар! Для какой комнаты ищете свет?',
-ai_hello: 'Здравствуйте! Я — AI-консультант Евросвет. Чем могу помочь? 💡',
-ai_hello2: 'Здравствуйте! Я помогу вам подобрать товары. Для какой комнаты ищете свет? 💡',
-ai_recommend: 'Я помогу подобрать товар! Для какой комнаты ищете свет? Гостиная, кухня, спальня или детская? 💡',
-ai_price: 'Наши цены очень доступны! Лампы от 500₸, люстры от 15 000₸. Полный список смотрите в разделе "Товары". 💰',
-ai_delivery: 'О доставке: Самовывоз — бесплатно, по городу — 500₸, в область — 1 500₸, экспресс — 2 000₸. Бесплатная доставка при заказе от 50 000₸! 🚚',
-ai_contact: 'Связаться с нами: 📞 +7 (701) 123-45-67, 💬 WhatsApp, 📸 Instagram @evrosvet_kulsary. Кульсары, ул. Кенесары 45. 📍',
-ai_default: 'Спасибо за вопрос! Я готов помочь. Могу помочь с подбором товаров, ценами, доставкой или другими вопросами. 😊',
-}
-};
-
-const products = [
-{id:1,name:{kk:'Кристалл люстрасы 8 шам',ru:'Люстра Кристалл 8 ламп'},cat:'chandelier',price:45000,old:65000,icon:'✨',color:'#f59e0b',badge:'sale',rating:4.9,reviews:23,desc:{kk:'Классикалық кристалл люстра',ru:'Классическая люстра из кристаллов'}},
-{id:2,name:{kk:'LED лампа 12W Ақ',ru:'LED лампа 12W Белая'},cat:'lamp',price:800,old:1200,icon:'💡',color:'#3b82f6',badge:'hit',rating:4.8,reviews:56,desc:{kk:'Энергия үнемдейтін LED лампа',ru:'Энергосберегающая LED лампа'}},
-{id:3,name:{kk:'RGB LED таспа 5м',ru:'RGB LED лента 5м'},cat:'led',price:3500,old:5000,icon:'🌈',color:'#10b981',badge:'new',rating:4.7,reviews:41,desc:{kk:'Түрлі түсті LED таспа пультпен',ru:'Цветная LED лента с пультом'}},
-{id:4,name:{kk:'Заманауи бра "Люкс"',ru:'Современное бра "Люкс"'},cat:'sconce',price:8500,old:12000,icon:'🪔',color:'#8b5cf6',badge:'sale',rating:4.6,reviews:18,desc:{kk:'Дәстүрлі стильдегі бра',ru:'Бра в классическом стиле'}},
-{id:5,name:{kk:'Үстел шамы "Минимализм"',ru:'Настольная лампа "Минимализм"'},cat:'table',price:6500,old:9000,icon:'🪔',color:'#f59e0b',badge:'hot',rating:4.5,reviews:15,desc:{kk:'Заманауи минималистік дизайн',ru:'Современный минималистичный дизайн'}},
-{id:6,name:{kk:'Төбе шамы LED 36W',ru:'Потолочный светильник LED 36W'},cat:'ceiling',price:12000,old:18000,icon:'🌟',color:'#ef4444',badge:'sale',rating:4.8,reviews:32,desc:{kk:'Төбеге арналған заманауи шам',ru:'Современный светильник для потолка'}},
-{id:7,name:{kk:'Кристалл люстрасы 6 шам',ru:'Люстра Кристалл 6 ламп'},cat:'chandelier',price:35000,old:50000,icon:'✨',color:'#f59e0b',badge:'sale',rating:4.7,reviews:19,desc:{kk:'Орташа мөлшерлі кристалл люстра',ru:'Люстра из кристаллов среднего размера'}},
-{id:8,name:{kk:'LED лампа 7W Жылы',ru:'LED лампа 7W Теплая'},cat:'lamp',price:500,old:800,icon:'💡',color:'#3b82f6',badge:'hit',rating:4.9,reviews:67,desc:{kk:'Жылы түсті LED лампа',ru:'LED лампа теплого цвета'}},
-{id:9,name:{kk:'RGB LED таспа 10м + контроллер',ru:'RGB LED лента 10м + контроллер'},cat:'led',price:6500,old:9500,icon:'🌈',color:'#10b981',badge:'new',rating:4.6,reviews:28,desc:{kk:'Контроллеры бар түрлі түсті LED',ru:'Цветная LED с контроллером'}},
-{id:10,name:{kk:'Бра "Винтаж" 2 дана',ru:'Бра "Винтаж" 2 шт.'},cat:'sconce',price:12000,old:16000,icon:'🪔',color:'#8b5cf6',badge:'sale',rating:4.4,reviews:12,desc:{kk:'Винтаждық стильдегі бра жұбы',ru:'Пара бра в винтажном стиле'}},
-{id:11,name:{kk:'Оқу шамы "Классик"',ru:'Лампа для чтения "Классик"'},cat:'table',price:4500,old:6000,icon:'🪔',color:'#f59e0b',badge:'',rating:4.3,reviews:22,desc:{kk:'Кітап оқу үшін арналған шам',ru:'Лампа для чтения книг'}},
-{id:12,name:{kk:'Панельді LED шам 24W',ru:'Панельный LED светильник 24W'},cat:'ceiling',price:9500,old:14000,icon:'🌟',color:'#ef4444',badge:'hot',rating:4.7,reviews:35,desc:{kk:'Жұмыс кеңістігі үшін жарқын шам',ru:'Яркий светильник для рабочего пространства'}},
-];
-
-const defaultReviews = [
-{name:'Айгүл Т.',date:'2024-03-15',rating:5,text:{kk:'Өте сапалы тауар! Люстра өте әдемі. Жеткізу де тез болды. Рахмет!',ru:'Очень качественный товар! Люстра очень красивая. Доставка тоже быстрая. Спасибо!'},product:'Люстра Кристалл',color:'#f59e0b'},
-{name:'Дәурен К.',date:'2024-03-10',rating:5,text:{kk:'LED таспа керемет жарқырайды. Балаларыма ұнады!',ru:'LED лента отлично светит. Детям понравилось!'},product:'RGB LED 5м',color:'#3b82f6'},
-{name:'Асем М.',date:'2024-03-05',rating:4,text:{kk:'Жақсы дүкен. Бағалары қолжетімді. Тағы да тапсырыс беремін.',ru:'Хороший магазин. Цены доступные. Буду заказывать ещё.'},product:'Бра Люкс',color:'#8b5cf6'},
-];
-
-// ===== STATE =====
-let currentLang = 'kk';
-let cart = [];
-let wishlist = [];
-let reviews = [...defaultReviews];
-let selectedDelivery = 'pickup';
-let selectedPayment = 'cash';
-let currentRating = 5;
-let aiMessagesSent = false;
-
-// ===== LANGUAGE =====
-function setLang(lang) {
-currentLang = lang;
-document.documentElement.lang = lang;
-document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-document.querySelectorAll('.lang-btn').forEach(b => {
-if (b.textContent.trim().toLowerCase().includes(lang === 'kk' ? 'қаз' : 'рус')) b.classList.add('active');
-});
-document.querySelectorAll('[data-i18n]').forEach(el => {
-const key = el.getAttribute('data-i18n');
-if (translations[lang][key]) {
-if (key === 'hero_title') el.innerHTML = translations[lang][key];
-else el.textContent = translations[lang][key];
-}
-});
-document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-const key = el.getAttribute('data-i18n-placeholder');
-if (translations[lang][key]) el.placeholder = translations[lang][key];
-});
-renderProducts();
-renderReviews();
-updateCartUI();
-}
-
-// ===== TOAST =====
-function showToast(msg, type = 'success') {
-const container = document.getElementById('toastContainer');
-const toast = document.createElement('div');
-toast.className = `toast ${type}`;
-const icons = { success: 'fa-check-circle', error: 'fa-exclamation-circle', info: 'fa-info-circle', warning: 'fa-exclamation-triangle' };
-toast.innerHTML = `<i class="fas ${icons[type]}"></i> ${msg}`;
-container.appendChild(toast);
-setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(100px)'; setTimeout(() => toast.remove(), 400); }, 3000);
-}
-
-// ===== PRODUCTS =====
-function renderProducts(filter = 'all') {
-const grid = document.getElementById('productsGrid');
-const t = translations[currentLang];
-const filtered = filter === 'all' ? products : products.filter(p => p.cat === filter);
-grid.innerHTML = filtered.map(p => {
-const badgeClass = { sale: 'badge-sale', new: 'badge-new', hot: 'badge-hot', hit: 'badge-hit' }[p.badge] || '';
-const badgeText = { sale: '-30%', new: 'NEW', hot: '🔥', hit: 'HIT' }[p.badge] || '';
-const inCart = cart.find(c => c.id === p.id);
-const inWish = wishlist.find(w => w.id === p.id);
-return `
-<div class="product-card" data-category="${p.cat}">
-<div class="product-image">
-<div class="img-placeholder" style="background:linear-gradient(135deg,${p.color}22,${p.color}11);color:${p.color}">${p.icon}</div>
-<div class="product-badges">${badgeText ? `<div class="product-badge ${badgeClass}">${badgeText}</div>` : ''}</div>
-<div class="product-actions">
-<button class="action-btn ${inWish ? 'wishlisted' : ''}" onclick="toggleWish(${p.id})" title="${t.wish_add}">
-<i class="fas fa-heart"></i>
-</button>
-<button class="action-btn" onclick="quickView(${p.id})" title="Көру">
-<i class="fas fa-eye"></i>
-</button>
-</div>
-</div>
-<div class="product-info">
-<div class="product-category">${getCatName(p.cat)}</div>
-<div class="product-name">${p.name[currentLang]}</div>
-<div class="product-rating">
-<div class="stars">${getStars(p.rating)}</div>
-<div class="rating-text">${p.rating} (${p.reviews})</div>
-</div>
-<div class="product-price">
-<div class="current-price">${p.price.toLocaleString()} ₸</div>
-${p.old ? `<div class="old-price">${p.old.toLocaleString()} ₸</div>` : ''}
-</div>
-<button class="product-add-btn ${inCart ? 'added' : ''}" onclick="addToCart(${p.id})">
-<i class="fas ${inCart ? 'fa-check' : 'fa-cart-plus'}"></i>
-${inCart ? t.added : t.add_to_cart}
-</button>
-</div>
-</div>
-`;
-}).join('');
-}
-
-function filterProducts(cat) {
-document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-document.querySelectorAll('.filter-btn').forEach(b => {
-if (b.textContent.trim().toLowerCase().includes(getCatName(cat).toLowerCase().slice(0, 4))) b.classList.add('active');
-});
-if (cat === 'all') document.querySelector('.filter-btn').classList.add('active');
-renderProducts(cat);
-document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-}
-
-function getCatName(cat) {
-const names = {
-chandelier: currentLang === 'kk' ? 'Люстралар' : 'Люстры',
-lamp: currentLang === 'kk' ? 'Лампалар' : 'Лампы',
-led: currentLang === 'kk' ? 'LED таспалар' : 'LED ленты',
-sconce: currentLang === 'kk' ? 'Бра' : 'Бра',
-table: currentLang === 'kk' ? 'Үстел шамдары' : 'Настольные лампы',
-ceiling: currentLang === 'kk' ? 'Төбе шамдары' : 'Потолочные светильники',
-};
-return names[cat] || cat;
-}
-
-function getStars(rating) {
-let s = '';
-for (let i = 1; i <= 5; i++) {
-s += i <= Math.floor(rating) ? '★' : (i - 0.5 <= rating ? '★' : '☆');
-}
-return s;
-}
-
-// ===== CART =====
-function addToCart(id) {
-const product = products.find(p => p.id === id);
-if (!product) return;
-const existing = cart.find(c => c.id === id);
-if (existing) {
-existing.qty++;
-} else {
-cart.push({ ...product, qty: 1 });
-}
-renderProducts();
-updateCartUI();
-showToast(`${product.name[currentLang]} — ${translations[currentLang].added}`);
-}
-
-function removeFromCart(id) {
-cart = cart.filter(c => c.id !== id);
-updateCartUI();
-renderProducts();
-}
-
-function updateQty(id, delta) {
-const item = cart.find(c => c.id === id);
-if (!item) return;
-item.qty += delta;
-if (item.qty <= 0) removeFromCart(id);
-else updateCartUI();
-}
-
-function clearCart() {
-cart = [];
-updateCartUI();
-renderProducts();
-showToast('🛒', 'info');
-}
-
-function toggleCart() {
-document.getElementById('cartOverlay').classList.toggle('open');
-document.getElementById('cartSidebar').classList.toggle('open');
-}
-
-function updateCartUI() {
-const t = translations[currentLang];
-const cartItems = document.getElementById('cartItems');
-const cartFooter = document.getElementById('cartFooter');
-const emptyCart = document.getElementById('emptyCart');
-const countEl = document.getElementById('cartCount');
-const totalItems = cart.reduce((s, c) => s + c.qty, 0);
-countEl.textContent = totalItems;
-document.getElementById('wishCount').textContent = wishlist.length;
-
-if (cart.length === 0) {
-emptyCart.style.display = 'block';
-cartFooter.style.display = 'none';
-cartItems.querySelectorAll('.cart-item').forEach(el => el.remove());
-return;
-}
-emptyCart.style.display = 'none';
-cartFooter.style.display = 'block';
-const subtotal = cart.reduce((s, c) => s + c.price * c.qty, 0);
-const discount = Math.round(subtotal * 0.1);
-const delivery = subtotal >= 50000 ? 0 : 500;
-const total = subtotal - discount + delivery;
-
-document.getElementById('cartSubtotal').textContent = subtotal.toLocaleString() + ' ₸';
-document.getElementById('cartDelivery').textContent = delivery === 0 ? t.free : delivery.toLocaleString() + ' ₸';
-document.getElementById('cartDiscount').textContent = '-' + discount.toLocaleString() + ' ₸';
-document.getElementById('cartTotal').textContent = total.toLocaleString() + ' ₸';
-
-cartItems.querySelectorAll('.cart-item').forEach(el => el.remove());
-cart.forEach(item => {
-const el = document.createElement('div');
-el.className = 'cart-item';
-el.innerHTML = `
-<div class="cart-item-img" style="background:linear-gradient(135deg,${item.color}22,${item.color}11)">${item.icon}</div>
-<div class="cart-item-info">
-<h4>${item.name[currentLang]}</h4>
-<div class="cart-price">${(item.price * item.qty).toLocaleString()} ₸</div>
-<div class="cart-item-controls">
-<button class="qty-btn" onclick="updateQty(${item.id},-1)">−</button>
-<div class="qty-num">${item.qty}</div>
-<button class="qty-btn" onclick="updateQty(${item.id},1)">+</button>
-<button class="cart-item-remove" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button>
-</div>
-</div>
-`;
-cartItems.appendChild(el);
-});
-}
-
-// ===== WISHLIST =====
-function toggleWish(id) {
-const idx = wishlist.findIndex(w => w.id === id);
-if (idx >= 0) {
-wishlist.splice(idx, 1);
-showToast(currentLang === 'kk' ? '❤️ Тілектерден алынды' : '❤️ Удалено из избранного', 'info');
-} else {
-const product = products.find(p => p.id === id);
-wishlist.push(product);
-showToast(currentLang === 'kk' ? '❤️ Тілектерге қосылды' : '❤️ Добавлено в избранное', 'success');
-}
-renderProducts();
-updateCartUI();
-}
-
-function openWishlist() {
-if (wishlist.length === 0) {
-showToast(currentLang === 'kk' ? '❤️ Тілектер тізімі бос' : '❤️ Список избранного пуст', 'info');
-return;
-}
-showToast(currentLang === 'kk' ? `❤️ Тілектерде ${wishlist.length} тауар` : `❤️ В избранном ${wishlist.length} товаров`, 'success');
-}
-
-function quickView(id) {
-const p = products.find(pr => pr.id === id);
-if (p) showToast(p.name[currentLang], 'info');
-}
-
-// ===== CHECKOUT =====
-function openCheckout() {
-if (cart.length === 0) {
-showToast(currentLang === 'kk' ? 'Себет бос!' : 'Корзина пуста!', 'warning');
-return;
-}
-document.getElementById('checkoutModal').classList.add('open');
-nextStep(1);
-}
-
-function closeCheckout() {
-document.getElementById('checkoutModal').classList.remove('open');
-}
-
-function nextStep(step) {
-document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
-document.querySelectorAll('.step').forEach(el => el.classList.remove('active', 'done'));
-for (let i = 1; i <= 4; i++) {
-const s = document.getElementById(`step${i}`);
-if (i < step) s.classList.add('done');
-if (i === step) s.classList.add('active');
-}
-document.getElementById(`stepContent${step}`).classList.add('active');
-
-if (step === 4) {
-buildOrderSummary();
-}
-}
-
-function selectDelivery(el, type) {
-document.querySelectorAll('.delivery-opt').forEach(o => o.classList.remove('selected'));
-el.classList.add('selected');
-selectedDelivery = type;
-}
-
-function selectPayment(el, type) {
-document.querySelectorAll('.payment-opt').forEach(o => o.classList.remove('selected'));
-el.classList.add('selected');
-selectedPayment = type;
-}
-
-function buildOrderSummary() {
-const t = translations[currentLang];
-const subtotal = cart.reduce((s, c) => s + c.price * c.qty, 0);
-const discount = Math.round(subtotal * 0.1);
-const deliveryCost = { pickup: 0, city: 500, region: 1500, express: 2000 }[selectedDelivery];
-const total = subtotal - discount + (subtotal >= 50000 ? 0 : deliveryCost);
-const deliveryName = { pickup: t.delivery_p, city: t.delivery_c, region: t.delivery_r, express: t.delivery_e }[selectedDelivery];
-const payName = { cash: t.pay_c, card: t.pay_cd, kaspi: t.pay_k, transfer: t.pay_t }[selectedPayment];
-const name = document.getElementById('coName').value || '---';
-const phone = document.getElementById('coPhone').value || '---';
-const address = document.getElementById('coAddress').value || '---';
-
-document.getElementById('orderSummary').innerHTML = `
-<div style="background:#f8fafc;border-radius:16px;padding:25px">
-<h3 style="font-size:18px;margin-bottom:20px"><i class="fas fa-receipt"></i> ${t.checkout_title}</h3>
-<div style="margin-bottom:15px">
-<strong>${t.order_items}</strong>
-${cart.map(c => `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #e2e8f0">
-<span>${c.icon} ${c.name[currentLang]} × ${c.qty}</span>
-<span style="font-weight:700">${(c.price * c.qty).toLocaleString()} ₸</span>
-</div>`).join('')}
-</div>
-<div style="margin-bottom:15px">
-<div style="display:flex;justify-content:space-between;padding:5px 0"><span>${t.checkout_name}</span><strong>${name}</strong></div>
-<div style="display:flex;justify-content:space-between;padding:5px 0"><span>${t.checkout_phone}</span><strong>${phone}</strong></div>
-<div style="display:flex;justify-content:space-between;padding:5px 0"><span>${t.checkout_address}</span><strong>${address}</strong></div>
-<div style="display:flex;justify-content:space-between;padding:5px 0"><span>${t.checkout_delivery}</span><strong>${deliveryName}</strong></div>
-<div style="display:flex;justify-content:space-between;padding:5px 0"><span>${t.checkout_payment}</span><strong>${payName}</strong></div>
-</div>
-<div style="border-top:2px solid #1a1a2e;padding-top:15px">
-<div style="display:flex;justify-content:space-between;padding:3px 0"><span>${t.order_total}</span><span>${subtotal.toLocaleString()} ₸</span></div>
-<div style="display:flex;justify-content:space-between;padding:3px 0;color:#10b981"><span>${t.cart_discount}</span><span>-${discount.toLocaleString()} ₸</span></div>
-<div style="display:flex;justify-content:space-between;padding:3px 0"><span>${t.delivery_fee}</span><span>${(subtotal >= 50000 ? 0 : deliveryCost).toLocaleString()} ₸</span></div>
-<div style="display:flex;justify-content:space-between;padding:10px 0;font-size:22px;font-weight:800;color:#f59e0b">
-<span>${t.total_pay}</span><span>${total.toLocaleString()} ₸</span>
-</div>
-</div>
-</div>`;
-}
-
-function placeOrder() {
-const t = translations[currentLang];
-const orderId = 'EV-' + Date.now().toString(36).toUpperCase();
-document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
-document.getElementById('stepContent5').classList.add('active');
-document.getElementById('orderNumber').innerHTML = `${t.order_id} <strong style="color:var(--primary)">${orderId}</strong>`;
-cart = [];
-updateCartUI();
-renderProducts();
-showToast(t.success_title, 'success');
-}
-
-// ===== REVIEWS =====
-function renderReviews() {
-const t = translations[currentLang];
-const grid = document.getElementById('reviewsGrid');
-grid.innerHTML = reviews.map(r => `
-<div class="review-card">
-<div class="review-header">
-<div class="review-avatar" style="background:${r.color || '#f59e0b'}">${r.name.charAt(0)}</div>
-<div class="review-user">
-<div class="name">${r.name}</div>
-<div class="date">${r.date}</div>
-</div>
-</div>
-<div class="review-stars">
-${Array(r.rating).fill('<i class="fas fa-star"></i>').join('')}
-</div>
-<div class="review-text">${r.text[currentLang] || r.text}</div>
-<div class="review-product"><i class="fas fa-box"></i> ${r.product}</div>
-</div>
-`).join('');
-}
-
-function setRating(val) {
-currentRating = val;
-document.querySelectorAll('#starRating i').forEach((star, i) => {
-star.classList.toggle('active', i < val);
-});
-}
-
-function submitReview() {
-const t = translations[currentLang];
-const name = document.getElementById('revName').value;
-const comment = document.getElementById('revComment').value;
-if (!name || !comment) {
-showToast(currentLang === 'kk' ? 'Аты мен пікіріңізді толтырыңыз' : 'Заполните имя и отзыв', 'warning');
-return;
-}
-reviews.unshift({
-name, date: new Date().toISOString().split('T')[0], rating: currentRating,
-text: { kk: comment, ru: comment }, product: 'Евросвет', color: '#f59e0b'
-});
-renderReviews();
-document.getElementById('revName').value = '';
-document.getElementById('revComment').value = '';
-setRating(5);
-showToast(t.review_added, 'success');
-}
-
-// ===== AI CHAT =====
-function toggleAIChat() {
-const panel = document.getElementById('aiChatPanel');
-panel.classList.toggle('open');
-if (panel.classList.contains('open') && !aiMessagesSent) {
-aiMessagesSent = true;
-setTimeout(() => {
-const t = translations[currentLang];
-addAIMessage(t.ai_hello, 'bot');
-}, 500);
-}
-}
-
-function addAIMessage(msg, sender) {
-const container = document.getElementById('aiMessages');
-const div = document.createElement('div');
-div.className = `ai-msg ${sender}`;
-div.innerHTML = `${msg}<div class="msg-time">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>`;
-container.appendChild(div);
-container.scrollTop = container.scrollHeight;
-}
-
-function sendAIMessage() {
-const input = document.getElementById('aiInput');
-const msg = input.value.trim();
-if (!msg) return;
-addAIMessage(msg, 'user');
-input.value = '';
-setTimeout(() => {
-const t = translations[currentLang];
-const lower = msg.toLowerCase();
-let response = t.ai_default;
-if (lower.includes('сәлем') || lower.includes('привет') || lower.includes('hello') || lower.includes('салам')) response = t.ai_hello2;
-else if (lower.includes('кеңес') || lower.includes('совет') || lower.includes('таңда') || lower.includes('подбер') || lower.includes('recommend') || lower.includes('көмек') || lower.includes('помощь')) response = t.ai_recommend;
-else if (lower.includes('баға') || lower.includes('цен') || lower.includes('price') || lower.includes('қанша') || lower.includes('сколько')) response = t.ai_price;
-else if (lower.includes('жеткіз') || lower.includes('доставк') || lower.includes('delivery') || lower.includes('келеді')) response = t.ai_delivery;
-else if (lower.includes('байланыс') || lower.includes('контакт') || lower.includes('contact') || lower.includes('телефон') || lower.includes('номер')) response = t.ai_contact;
-else if (lower.includes('люстр') || lower.includes('шам') || lower.includes('светильник') || lower.includes('свет') || lower.includes('жарық')) response = t.ai_recommend;
-addAIMessage(response, 'bot');
-}, 800);
-}
-
-function aiQuick(type) {
-const t = translations[currentLang];
-const messages = {
-hello: currentLang === 'kk' ? 'Сәлеметсіз бе!' : 'Здравствуйте!',
-recommend: currentLang === 'kk' ? 'Маған кеңес керек' : 'Мне нужна консультация',
-price: currentLang === 'kk' ? 'Бағалар туралы айтыңызшы' : 'Расскажите о ценах',
-delivery: currentLang === 'kk' ? 'Жеткізу туралы білгім келеді' : 'Хочу узнать о доставке',
-contact: currentLang === 'kk' ? 'Байланыс ақпаратын беріңіз' : 'Дайте контактную информацию'
-};
-addAIMessage(messages[type], 'user');
-setTimeout(() => {
-let response = t.ai_default;
-if (type === 'hello') response = t.ai_hello2;
-else if (type === 'recommend') response = t.ai_recommend;
-else if (type === 'price') response = t.ai_price;
-else if (type === 'delivery') response = t.ai_delivery;
-else if (type === 'contact') response = t.ai_contact;
-addAIMessage(response, 'bot');
-}, 800);
-}
-
-// ===== MOBILE MENU =====
-function toggleMobileMenu() {
-document.getElementById('mobileMenu').classList.toggle('open');
-document.getElementById('mobileMenuOverlay').classList.toggle('open');
-}
-
-// ===== NEWSLETTER =====
-function subscribeNewsletter() {
-const email = document.getElementById('newsletterEmail').value;
-if (!email) return;
-showToast(translations[currentLang].newsletter_ok, 'success');
-document.getElementById('newsletterEmail').value = '';
-}
-
-// ===== SCROLL =====
-window.addEventListener('scroll', () => {
-const st = document.getElementById('scrollTop');
-if (window.scrollY > 500) st.classList.add('show');
-else st.classList.remove('show');
-});
-
-// ===== INIT =====
-document.addEventListener('DOMContentLoaded', () => {
-renderProducts();
-renderReviews();
-updateCartUI();
-setRating(5);
-
-// Smooth nav
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-a.addEventListener('click', e => {
-const href = a.getAttribute('href');
-if (href.length > 1) {
-e.preventDefault();
-document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-}
-});
-});
-});
-</script>
+  <!-- ================= TOP NOTICE BAR ================= -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-left">
+        <span class="pulse-dot"></span>
+        <span data-i18n="topNotice">Құлсары қаласы бойынша 30 000 ₸-ден бастап тегін жеткізу! Kaspi Red / 0-0-12 бар</span>
+      </div>
+      <div class="top-bar-right">
+        <!-- Language Switcher -->
+        <div class="lang-switch-group">
+          <button class="lang-btn active" id="langKz" onclick="setLanguage('kz')">🇰🇿 ҚАЗ</button>
+          <span class="lang-divider">/</span>
+          <button class="lang-btn" id="langRu" onclick="setLanguage('ru')">🇷🇺 РУС</button>
+        </div>
+        
+        <!-- Socials in top bar -->
+        <div class="top-socials">
+          <a href="https://wa.me/77014459988?text=Сәлеметсіз бе! ЕвроСвет Құлсары дүкені бойынша сұрағым бар еді" target="_blank" rel="noopener noreferrer" class="social-top-btn whatsapp" title="WhatsApp: +7 701 445 99 88" aria-label="WhatsApp: +7 701 445 99 88">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span class="social-label">+7 701 445 99 88</span>
+          </a>
+          <a href="https://www.instagram.com/evrosvet_kulsary/" target="_blank" rel="noopener noreferrer" class="social-top-btn instagram" title="Instagram: @evrosvet_kulsary" aria-label="Instagram: @evrosvet_kulsary">
+            <i class="fa-brands fa-instagram"></i>
+            <span class="social-label">@evrosvet_kulsary</span>
+          </a>
+          <a href="https://t.me/+77786490382" target="_blank" rel="noopener noreferrer" class="social-top-btn telegram" title="Telegram: +7 778 649 03 82" aria-label="Telegram: +7 778 649 03 82">
+            <i class="fa-brands fa-telegram"></i>
+            <span class="social-label">+7 778 649 03 82</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MAIN HEADER ================= -->
+  <header class="main-header" id="mainHeader">
+    <div class="container header-container">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo">
+        <div class="brand-icon">
+          <i class="fa-solid fa-lightbulb"></i>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">ЕвроСвет</span>
+          <span class="brand-city">ҚҰЛСАРЫ</span>
+        </div>
+      </a>
+
+      <!-- Search Bar -->
+      <div class="header-search">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Люстра, бра немесе шам іздеу..." data-i18n-ph="searchPlaceholder" oninput="handleSearch(this.value)">
+        <button id="clearSearchBtn" class="clear-search-btn" onclick="clearSearch()" style="display: none;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <!-- 2GIS Quick Link -->
+        <a href="https://2gis.kz/kulsary/search/Евросвет" target="_blank" rel="noopener noreferrer" class="action-btn-link gis-link-btn" title="2GIS Құлсары">
+          <span class="gis-badge">2GIS</span>
+          <span class="action-btn-text" data-i18n="gisBtn">2ГИС Карта</span>
+        </a>
+
+        <!-- Social Icons -->
+        <div class="header-socials" aria-label="Әлеуметтік желілер">
+          <a href="https://wa.me/77014459988?text=Сәлеметсіз бе! Люстралар туралы білгім келеді" target="_blank" rel="noopener noreferrer" class="social-icon-btn whatsapp" title="WhatsApp: +7 701 445 99 88" aria-label="WhatsApp: +7 701 445 99 88">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+          <a href="https://www.instagram.com/evrosvet_kulsary/" target="_blank" rel="noopener noreferrer" class="social-icon-btn instagram" title="Instagram: @evrosvet_kulsary" aria-label="Instagram: @evrosvet_kulsary">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://t.me/+77786490382" target="_blank" rel="noopener noreferrer" class="social-icon-btn telegram" title="Telegram: +7 778 649 03 82" aria-label="Telegram: +7 778 649 03 82">
+            <i class="fa-brands fa-telegram"></i>
+          </a>
+        </div>
+
+        <!-- Shopping Cart Button -->
+        <button class="cart-trigger-btn" id="openCartBtn" onclick="toggleCartModal(true)" aria-label="Себетті ашу">
+          <div class="cart-icon-wrapper">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+          </div>
+          <div class="cart-btn-info">
+            <span class="cart-label" data-i18n="cartTitle">Себет</span>
+            <span class="cart-total-preview" id="cartTotalPreview">0 ₸</span>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= HERO BANNER ================= -->
+  <section class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-pill">
+          <i class="fa-solid fa-award"></i>
+          <span data-i18n="heroPill">Құлсары қаласындағы №1 жарықтандыру дүкені</span>
+        </div>
+        <h1 class="hero-title" data-i18n="heroTitle">
+          Үйіңізге жайлылық пен <span class="highlight-gold">сымбатты жарық</span> сыйлаңыз
+        </h1>
+        <p class="hero-subtitle" data-i18n="heroSubtitle">
+          Ең сәнді хрусталь және LED люстралар, трек жүйелері, қабырға шамдары. 
+          Құлсары қаласы бойынша жылдам жеткізу, кәсіби орнату және Kaspi Red / 0-0-12 бөліп төлеу.
+        </p>
+        
+        <div class="hero-buttons">
+          <a href="#catalogSection" class="btn btn-primary">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span data-i18n="browseCatalog">Каталогты көру</span>
+          </a>
+          <button class="btn btn-glass" onclick="openAiChat()">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span data-i18n="askAiBtn">ЖИ Кеңесшіден сұрау</span>
+          </button>
+          <a href="https://wa.me/77014459988?text=Сәлеметсіз бе! ЕвроСвет Құлсары, каталогтан люстра таңдауға көмектесе аласыз ба?" target="_blank" rel="noopener noreferrer" class="btn btn-wa">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span data-i18n="writeWaBtn">Ватсапқа жазу</span>
+          </a>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="hero-features">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-qrcode"></i></div>
+            <div class="feature-text">
+              <strong data-i18n="feat1Title">Kaspi QR / Red</strong>
+              <span data-i18n="feat1Desc">0-0-12 бөліп төлеу</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+            <div class="feature-text">
+              <strong data-i18n="feat2Title">Құлсарыға жеткізу</strong>
+              <span data-i18n="feat2Desc">Тапсырыс берген күні</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="feature-text">
+              <strong data-i18n="feat3Title">12 ай кепілдік</strong>
+              <span data-i18n="feat3Desc">100% зауыттық сапа</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <div class="feature-text">
+              <strong data-i18n="feat4Title">Орнату шебері</strong>
+              <span data-i18n="feat4Desc">Кәсіби монтаж қызметі</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CATALOG SECTION ================= -->
+  <section class="catalog-section" id="catalogSection">
+    <div class="container">
+      
+      <div class="section-header">
+        <div>
+          <span class="section-tag" data-i18n="catalogTag">ТАУАРЛАР КАТАЛОГЫ</span>
+          <h2 class="section-title" data-i18n="catalogTitle">Танымал модельдер мен жаңа топтамалар</h2>
+        </div>
+        
+        <!-- Sort Control -->
+        <div class="catalog-sort">
+          <label for="sortSelect" data-i18n="sortLabel">Сұрыптау:</label>
+          <select id="sortSelect" onchange="handleSortChange(this.value)">
+            <option value="default" data-i18n="sortDefault">Ұсынылғандар</option>
+            <option value="price-asc" data-i18n="sortPriceAsc">Бағасы: арзаннан қымбатқа</option>
+            <option value="price-desc" data-i18n="sortPriceDesc">Бағасы: қымбаттан арзанға</option>
+            <option value="rating" data-i18n="sortRating">Рейтингі бойынша</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="category-tabs" id="categoryTabs">
+        <button class="cat-tab active" data-category="all" onclick="filterCategory('all')">
+          <i class="fa-solid fa-border-all"></i>
+          <span data-i18n="catAll">Барлық тауарлар</span>
+        </button>
+        <button class="cat-tab" data-category="chandeliers" onclick="filterCategory('chandeliers')">
+          <i class="fa-solid fa-sun"></i>
+          <span data-i18n="catChandeliers">Люстралар</span>
+        </button>
+        <button class="cat-tab" data-category="sconces" onclick="filterCategory('sconces')">
+          <i class="fa-solid fa-lightbulb"></i>
+          <span data-i18n="catSconces">Бра және қабырға шамдары</span>
+        </button>
+        <button class="cat-tab" data-category="track" onclick="filterCategory('track')">
+          <i class="fa-solid fa-ellipsis"></i>
+          <span data-i18n="catTrack">Трек жүйелері</span>
+        </button>
+        <button class="cat-tab" data-category="floor" onclick="filterCategory('floor')">
+          <i class="fa-solid fa-arrows-up-down"></i>
+          <span data-i18n="catFloor">Торшерлер</span>
+        </button>
+        <button class="cat-tab" data-category="outdoor" onclick="filterCategory('outdoor')">
+          <i class="fa-solid fa-house-chimney-window"></i>
+          <span data-i18n="catOutdoor">Сыртқы жарық</span>
+        </button>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-grid" id="productsGrid">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+
+      <!-- Empty state -->
+      <div id="noProductsFound" class="empty-state" style="display: none;">
+        <i class="fa-solid fa-box-open"></i>
+        <h3 data-i18n="noProductsTitle">Тауар табылмады</h3>
+        <p data-i18n="noProductsDesc">Іздеу сөзін өзгертіп көріңіз немесе барлық санатты таңдаңыз.</p>
+        <button class="btn btn-primary" onclick="resetFilters()" data-i18n="resetFiltersBtn">Барлық тауарларды көрсету</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= ABOUT & 2GIS MAP SECTION ================= -->
+  <section class="store-info-section" id="storeInfo">
+    <div class="container">
+      <div class="store-info-grid">
+        
+        <div class="store-text-col">
+          <span class="section-tag" data-i18n="storeTag">БІЗДІҢ МЕКЕНЖАЙ ЖӘНЕ БАЙЛАНЫС</span>
+          <h2 class="section-title" data-i18n="storeTitle">«ЕвроСвет» дүкеніне қош келдіңіздер!</h2>
+          <p class="store-desc" data-i18n="storeDesc">
+            Құлсары қаласындағы ең үлкен люстралар мен заманауи жарықтандыру шоу-румы. 
+            Тікелей зауыттардан сапалы өнімдер, 1000-нан астам түрлі жарық үлгілері.
+            Келіп, өз көзіңізбен көріп, үйіңіздің интерьеріне ең лайықтысын таңдаңыз!
+          </p>
+
+          <div class="contacts-list">
+            <div class="contact-card">
+              <div class="contact-icon address-icon"><i class="fa-solid fa-location-dot"></i></div>
+              <div class="contact-detail">
+                <span class="contact-label" data-i18n="addrLabel">Мекенжайымыз:</span>
+                <strong class="contact-value" data-i18n="addrValue">Құлсары қаласы, Өтеулі Алдахов көшесі, 17</strong>
+                <span class="contact-hint" data-i18n="addrHint">(ТД «Багдат» / Мереке ықшамауданы маңы)</span>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon time-icon"><i class="fa-regular fa-clock"></i></div>
+              <div class="contact-detail">
+                <span class="contact-label" data-i18n="hoursLabel">Жұмыс кестесі:</span>
+                <strong class="contact-value" data-i18n="hoursValue">Күн сайын 09:00 - 20:00</strong>
+                <span class="contact-hint" data-i18n="hoursHint">Демалыссыз, үзіліссіз</span>
+              </div>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon phone-icon"><i class="fa-solid fa-phone"></i></div>
+              <div class="contact-detail">
+                <span class="contact-label" data-i18n="phoneLabel">Телефон & WhatsApp:</span>
+                <a href="tel:+77014459988" class="contact-phone-link">+7 (701) 445-99-88</a>
+                <a href="tel:+77786490382" class="contact-phone-link contact-phone-link-alt">
+                  +7 (778) 649-03-82
+                  <span class="phone-badge">Telegram / WhatsApp</span>
+                </a>
+                <span class="contact-hint" data-i18n="phoneHint">Менеджер дереу жауап береді</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="store-links-group">
+            <!-- 2GIS Link Button -->
+            <a href="https://2gis.kz/kulsary/search/Евросвет" target="_blank" rel="noopener noreferrer" class="gis-button">
+              <span class="gis-logo-pill">2GIS</span>
+              <div>
+                <strong data-i18n="gisOpenTitle">2ГИС арқылы ашу</strong>
+                <small data-i18n="gisOpenDesc">Маршрут құру және навигация</small>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+
+            <!-- Instagram Button -->
+            <a href="https://www.instagram.com/evrosvet_kulsary/" target="_blank" rel="noopener noreferrer" class="insta-button">
+              <i class="fa-brands fa-instagram"></i>
+              <div>
+                <strong>@evrosvet_kulsary</strong>
+                <small data-i18n="instaFollow">Инстаграмдағы жаңа видеолар</small>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+
+            <!-- WhatsApp Direct Button -->
+            <a href="https://wa.me/77014459988?text=Сәлеметсіз бе! ЕвроСвет Құлсары дүкенінің нақты орнын жібере аласыз ба?" target="_blank" rel="noopener noreferrer" class="wa-button">
+              <i class="fa-brands fa-whatsapp"></i>
+              <div>
+                <strong data-i18n="waDirectTitle">WhatsApp-қа жазу</strong>
+                <small data-i18n="waDirectDesc">Кеңес алу және локация сұрау</small>
+              </div>
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <!-- Telegram Direct Button -->
+            <a href="https://t.me/+77786490382" target="_blank" rel="noopener noreferrer" class="tg-button">
+              <i class="fa-brands fa-telegram"></i>
+              <div>
+                <strong data-i18n="tgDirectTitle">Telegram: +7 778 649 03 82</strong>
+                <small data-i18n="tgDirectDesc">Жылдам кеңес және тапсырыс</small>
+              </div>
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Visual Map & Store Photo Column -->
+        <div class="store-map-col">
+          <div class="map-card-container">
+            <div class="map-card-header">
+              <div class="map-indicator">
+                <span class="live-dot"></span>
+                <span data-i18n="mapStatus">Қазір дүкен ашық</span>
+              </div>
+              <a href="https://2gis.kz/kulsary/search/Евросвет" target="_blank" rel="noopener noreferrer" class="map-2gis-badge">
+                <i class="fa-solid fa-location-arrow"></i> 2GIS-тен көру
+              </a>
+            </div>
+            
+            <!-- Stylized Interactive Map Widget -->
+            <div class="interactive-map-frame">
+              <div class="map-backdrop">
+                <div class="map-road road-h-1"></div>
+                <div class="map-road road-h-2"></div>
+                <div class="map-road road-v-1"></div>
+                <div class="map-building b-1"><span>ТД «Багдат»</span></div>
+                <div class="map-building b-2"><span>Мереке мкр</span></div>
+                <div class="map-building store-pin-building">
+                  <div class="custom-pin">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <span class="pin-popup">ЕвроСвет (Алдахов к-сі, 17)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="map-info-overlay">
+                <div class="map-address-banner">
+                  <i class="fa-solid fa-diamond-turn-right"></i>
+                  <div>
+                    <span data-i18n="mapNavHint">Құлсары қаласы, Өтеулі Алдахов к-сі, 17 үй</span>
+                    <small data-i18n="mapNavSub">ТД Багдат маңында</small>
+                  </div>
+                </div>
+                <a href="https://2gis.kz/kulsary/search/Евросвет" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <i class="fa-solid fa-route"></i>
+                  <span data-i18n="buildRoute">Маршрут сызу</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Social Hub -->
+            <div class="social-hub-box">
+              <div class="social-hub-header">
+                <div>
+                  <strong data-i18n="socialHubTitle">Біз әлеуметтік желілердеміз</strong>
+                  <span data-i18n="socialHubDesc">Жаңа түсімдер, жеңілдіктер және кеңес</span>
+                </div>
+                <i class="fa-solid fa-share-nodes social-hub-icon"></i>
+              </div>
+              <div class="social-hub-links">
+                <a href="https://www.instagram.com/evrosvet_kulsary/" target="_blank" rel="noopener noreferrer" class="social-hub-link instagram">
+                  <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
+                <a href="https://t.me/+77786490382" target="_blank" rel="noopener noreferrer" class="social-hub-link telegram">
+                  <i class="fa-brands fa-telegram"></i> Telegram
+                </a>
+                <a href="https://wa.me/77786490382?text=Сәлеметсіз бе! ЕвроСвет Құлсары дүкені бойынша сұрағым бар еді" target="_blank" rel="noopener noreferrer" class="social-hub-link whatsapp">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= REVIEWS & COMMENTS SECTION ================= -->
+  <section class="reviews-section" id="reviewsSection">
+    <div class="container">
+      
+      <div class="section-header">
+        <div>
+          <span class="section-tag" data-i18n="reviewsTag">ТҰТЫНУШЫЛАРДЫҢ ЛЕБІЗІ</span>
+          <h2 class="section-title" data-i18n="reviewsTitle">Пікірлер мен бағалаулар</h2>
+        </div>
+        <button class="btn btn-gold" onclick="toggleReviewForm()">
+          <i class="fa-regular fa-comment-dots"></i>
+          <span data-i18n="writeReviewBtn">Пікір қалдыру</span>
+        </button>
+      </div>
+
+      <!-- Reviews Summary Rating Card -->
+      <div class="reviews-summary-card">
+        <div class="summary-score-col">
+          <div class="score-number">4.9</div>
+          <div class="stars-gold">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <span class="score-count" id="totalReviewsCountText" data-i18n="reviewsCountText">Барлығы 140+ пікір</span>
+        </div>
+        <div class="summary-badges-col">
+          <div class="trust-pill"><i class="fa-solid fa-check-circle"></i> <span data-i18n="trust1">Тек шынайы сатып алушылар</span></div>
+          <div class="trust-pill"><i class="fa-solid fa-check-circle"></i> <span data-i18n="trust2">Жеткізу сапасы 100%</span></div>
+          <div class="trust-pill"><i class="fa-solid fa-check-circle"></i> <span data-i18n="trust3">Кепілдікпен қызмет көрсету</span></div>
+        </div>
+      </div>
+
+      <!-- Add Review Form (Collapsible) -->
+      <div class="add-review-form-container" id="addReviewFormContainer" style="display: none;">
+        <div class="review-form-box">
+          <div class="form-header-row">
+            <h3 data-i18n="reviewFormTitle">Өз пікіріңізді қалдырыңыз</h3>
+            <button class="close-form-btn" onclick="toggleReviewForm()"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          <p class="form-desc" data-i18n="reviewFormDesc">Сіздің пікіріңіз біз үшін және басқа құлсарылық жерлестеріміз үшін өте маңызды!</p>
+          
+          <form id="newReviewForm" onsubmit="handleReviewSubmit(event)">
+            <div class="form-row-2">
+              <div class="form-group">
+                <label data-i18n="reviewAuthorLabel">Аты-жөніңіз:</label>
+                <input type="text" id="reviewAuthor" required placeholder="Мысалы: Айгүл Махамбетова" data-i18n-ph="reviewAuthorPh">
+              </div>
+              <div class="form-group">
+                <label data-i18n="reviewCityLabel">Қала немесе ауыл:</label>
+                <input type="text" id="reviewCity" placeholder="Мысалы: Құлсары, Боранқұл, т.б." data-i18n-ph="reviewCityPh">
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label data-i18n="reviewProductLabel">Сатып алған тауарыңыз:</label>
+                <input type="text" id="reviewProduct" placeholder="Мысалы: Gold Halo люстрасы" data-i18n-ph="reviewProductPh">
+              </div>
+              <div class="form-group">
+                <label data-i18n="reviewRatingLabel">Бағаңыз (Жұлдызша):</label>
+                <div class="star-rating-select">
+                  <label><input type="radio" name="starRating" value="5" checked> ★ 5</label>
+                  <label><input type="radio" name="starRating" value="4"> ★ 4</label>
+                  <label><input type="radio" name="starRating" value="3"> ★ 3</label>
+                  <label><input type="radio" name="starRating" value="2"> ★ 2</label>
+                  <label><input type="radio" name="starRating" value="1"> ★ 1</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label data-i18n="reviewTextLabel">Пікіріңіз немесе ұсынысыңыз:</label>
+              <textarea id="reviewText" rows="3" required placeholder="Люстраның сапасы, жеткізу, қызмет көрсету туралы жазыңыз..." data-i18n-ph="reviewTextPh"></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" data-i18n="reviewSubmitBtn">Пікірді жариялау</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Reviews Cards List -->
+      <div class="reviews-list-grid" id="reviewsListGrid">
+        <!-- Rendered by JS -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="main-footer">
+    <div class="container footer-container">
+      
+      <div class="footer-col brand-col">
+        <div class="brand-logo footer-logo">
+          <div class="brand-icon"><i class="fa-solid fa-lightbulb"></i></div>
+          <div class="brand-text">
+            <span class="brand-title">ЕвроСвет</span>
+            <span class="brand-city">ҚҰЛСАРЫ</span>
+          </div>
+        </div>
+        <p class="footer-bio" data-i18n="footerBio">
+          Құлсары қаласындағы люстралар мен заманауи жарықтандыру дүкені. Үйіңізге жайлылық пен сұлулық сыйлаймыз.
+        </p>
+        <div class="footer-payment-icons">
+          <span class="pay-pill">Kaspi QR</span>
+          <span class="pay-pill">Kaspi Red</span>
+          <span class="pay-pill">Рассрочка 0-0-12</span>
+          <span class="pay-pill">Mastercard / Visa</span>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading" data-i18n="footerNavTitle">Каталог санаттары</h4>
+        <ul class="footer-links">
+          <li><a href="#catalogSection" onclick="filterCategory('chandeliers')" data-i18n="catChandeliers">Люстралар</a></li>
+          <li><a href="#catalogSection" onclick="filterCategory('sconces')" data-i18n="catSconces">Бра шамдары</a></li>
+          <li><a href="#catalogSection" onclick="filterCategory('track')" data-i18n="catTrack">Трек жүйелері</a></li>
+          <li><a href="#catalogSection" onclick="filterCategory('floor')" data-i18n="catFloor">Торшерлер</a></li>
+          <li><a href="#catalogSection" onclick="filterCategory('outdoor')" data-i18n="catOutdoor">Сыртқы жарық</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading" data-i18n="footerCustTitle">Тұтынушыларға</h4>
+        <ul class="footer-links">
+          <li><a href="#storeInfo" data-i18n="footerDelivery">Жеткізу және орнату</a></li>
+          <li><a href="#reviewsSection" data-i18n="footerReviews">Пікірлер</a></li>
+          <li><a href="#" onclick="openAiChat(); return false;" data-i18n="footerAi">ЖИ Оператор көмегі</a></li>
+          <li><a href="https://2gis.kz/kulsary/search/Евросвет" target="_blank" rel="noopener noreferrer">2ГИС Картасы</a></li>
+          <li><a href="https://www.instagram.com/evrosvet_kulsary/" target="_blank" rel="noopener noreferrer">Instagram парақшасы</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading" data-i18n="footerContactsTitle">Байланыс деректері</h4>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Құлсары қ., Өтеулі Алдахов к-сі, 17</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <a href="tel:+77014459988">+7 (701) 445-99-88</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-phone"></i>
+          <a href="tel:+77786490382">+7 (778) 649-03-82</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-brands fa-whatsapp"></i>
+          <a href="https://wa.me/77014459988" target="_blank" rel="noopener noreferrer">WhatsApp: +7 701 445 99 88</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-brands fa-whatsapp"></i>
+          <a href="https://wa.me/77786490382" target="_blank" rel="noopener noreferrer">WhatsApp: +7 778 649 03 82</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-brands fa-telegram"></i>
+          <a href="https://t.me/+77786490382" target="_blank" rel="noopener noreferrer">Telegram: +7 778 649 03 82</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-brands fa-instagram"></i>
+          <a href="https://www.instagram.com/evrosvet_kulsary/" target="_blank" rel="noopener noreferrer">@evrosvet_kulsary</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-flex">
+        <span>© 2026 «ЕвроСвет Құлсары». Барлық құқықтар қорғалған.</span>
+        <span>Жарық пен сұлулық үйіңізден кетпесін! 💡</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= FLOATING ACTION BUTTONS (WHATSAPP, TELEGRAM, INSTAGRAM) ================= -->
+  <div class="floating-contact-bar">
+    <a href="https://wa.me/77014459988?text=Сәлеметсіз бе! ЕвроСвет Құлсары, сайттан жазып тұрмын" target="_blank" rel="noopener noreferrer" class="float-btn float-wa" title="WhatsApp арқылы жазу" aria-label="WhatsApp арқылы жазу">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span class="float-btn-tooltip">WhatsApp</span>
+    </a>
+    <a href="https://t.me/+77786490382" target="_blank" rel="noopener noreferrer" class="float-btn float-tg" title="Telegram арқылы жазу" aria-label="Telegram арқылы жазу">
+      <i class="fa-brands fa-telegram"></i>
+      <span class="float-btn-tooltip">Telegram</span>
+    </a>
+    <a href="https://www.instagram.com/evrosvet_kulsary/" target="_blank" rel="noopener noreferrer" class="float-btn float-insta" title="Instagram парақшасы" aria-label="Instagram парақшасы">
+      <i class="fa-brands fa-instagram"></i>
+      <span class="float-btn-tooltip">Instagram</span>
+    </a>
+  </div>
+
+  <!-- ================= AI OPERATOR (ЖИ КЕҢЕСШІ) CHAT WIDGET ================= -->
+  <div class="ai-widget-wrapper" id="aiWidget">
+    <!-- Floating toggle pill -->
+    <button class="ai-widget-trigger" onclick="toggleAiChat()">
+      <div class="ai-avatar-badge">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+      </div>
+      <div class="ai-trigger-text">
+        <span class="ai-trigger-title" data-i18n="aiTriggerTitle">ЖИ Кеңесші</span>
+        <span class="ai-trigger-sub" data-i18n="aiTriggerSub">Люстра таңдауға көмектеседі</span>
+      </div>
+    </button>
+
+    <!-- Chat Box -->
+    <div class="ai-chat-box" id="aiChatBox">
+      <div class="ai-chat-header">
+        <div class="ai-bot-profile">
+          <div class="ai-avatar-round">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <div>
+            <div class="ai-bot-name">Айсұлу (ЖИ Оператор)</div>
+            <div class="ai-bot-status"><span class="ai-online-dot"></span> <span data-i18n="aiOnline">Онлайн | ЕвроСвет Құлсары</span></div>
+          </div>
+        </div>
+        <button class="ai-close-btn" onclick="toggleAiChat()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="ai-chat-messages" id="aiChatMessages">
+        <div class="ai-msg bot">
+          <div class="ai-bubble" data-i18n="aiGreeting">
+            Сәлеметсіз бе! Мен — «ЕвроСвет Құлсары» дүкенінің ЖИ көмекшісімін. 🌟 
+            Бөлмеңізге люстра таңдауға, жарық қуатын есептеуге немесе жеткізу бойынша көмектесуге дайынмын. Сұрағыңызды қойыңыз!
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Suggestion Chips -->
+      <div class="ai-quick-prompts" id="aiQuickPrompts">
+        <button class="prompt-chip" onclick="sendAiPrompt(this.innerText)">Қонақ бөлмеге люстра ұсын</button>
+        <button class="prompt-chip" onclick="sendAiPrompt(this.innerText)">Құлсары бойынша жеткізу қалай?</button>
+        <button class="prompt-chip" onclick="sendAiPrompt(this.innerText)">Kaspi Red / Рассрочка бар ма?</button>
+        <button class="prompt-chip" onclick="sendAiPrompt(this.innerText)">Жарық түсін (Кельвин) қалай таңдаймын?</button>
+      </div>
+
+      <!-- Chat Input -->
+      <form class="ai-chat-input-form" onsubmit="handleAiSubmit(event)">
+        <input type="text" id="aiUserInput" placeholder="Сұрағыңызды жазыңыз..." data-i18n-ph="aiInputPlaceholder" autocomplete="off">
+        <button type="submit" class="ai-send-btn" title="Жіберу">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= CART & CHECKOUT DRAWER / MODAL ================= -->
+  <div class="modal-overlay" id="cartOverlay" onclick="handleOverlayClick(event)">
+    <div class="cart-drawer" id="cartDrawer">
+      
+      <div class="cart-header">
+        <div class="cart-header-title">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <h3 data-i18n="cartHeading">Себет</h3>
+          <span class="cart-items-count-pill" id="cartCountPill">0</span>
+        </div>
+        <button class="cart-close-btn" onclick="toggleCartModal(false)"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Empty Cart Message -->
+      <div class="cart-empty-view" id="cartEmptyView">
+        <i class="fa-solid fa-cart-arrow-down empty-cart-icon"></i>
+        <h4 data-i18n="cartEmptyTitle">Себетіңіз әзірге бос</h4>
+        <p data-i18n="cartEmptyDesc">Каталогтан өзіңізге ұнаған люстра немесе шамды таңдап, себетке қосыңыз.</p>
+        <button class="btn btn-primary" onclick="toggleCartModal(false)" data-i18n="continueShopping">Тауарларды таңдау</button>
+      </div>
+
+      <!-- Cart Items & Checkout -->
+      <div class="cart-content-view" id="cartContentView" style="display: none;">
+        
+        <!-- Cart Items List -->
+        <div class="cart-items-list" id="cartItemsList">
+          <!-- Rendered by JS -->
+        </div>
+
+        <!-- Checkout Form Accordion -->
+        <div class="checkout-box">
+          <h4 class="checkout-title" data-i18n="checkoutDetailsTitle">Тапсырыс беруші деректері</h4>
+          
+          <div class="checkout-fields">
+            <div class="checkout-input-group">
+              <label data-i18n="custNameLabel">Аты-жөніңіз:</label>
+              <input type="text" id="orderCustName" placeholder="Мысалы: Мұрат Қайратұлы" data-i18n-ph="custNamePh">
+            </div>
+
+            <div class="checkout-input-group">
+              <label data-i18n="custPhoneLabel">Телефон нөміріңіз:</label>
+              <input type="tel" id="orderCustPhone" placeholder="+7 (701) 000-00-00" data-i18n-ph="custPhonePh">
+            </div>
+
+            <!-- Delivery Option Selection -->
+            <div class="checkout-input-group">
+              <label data-i18n="deliveryTypeLabel">Жеткізу тәсілі:</label>
+              <select id="orderDeliveryType" onchange="handleDeliveryChange(this.value)">
+                <option value="kulsary" data-i18n="delivKulsary">Құлсары қаласы бойынша (Курьермен есікке дейін)</option>
+                <option value="village" data-i18n="delivVillage">Жылыой ауданы ауылдары (Жаңа Қаратон, Теңіз т.б.)</option>
+                <option value="pickup" data-i18n="delivPickup">Дүкеннен алып кету (Өтеулі Алдахов к-сі, 17)</option>
+                <option value="kz" data-i18n="delivKz">Қазақстанның басқа қалаларына (Казпочта / Индрайвер)</option>
+              </select>
+            </div>
+
+            <div class="checkout-input-group" id="addressInputGroup">
+              <label data-i18n="addressLabel">Жеткізу мекенжайы:</label>
+              <input type="text" id="orderAddress" placeholder="Көше, үй/пәтер нөмірі" data-i18n-ph="addressPh">
+            </div>
+
+            <!-- Extra Installation Service -->
+            <label class="checkbox-option">
+              <input type="checkbox" id="orderInstallNeed" onchange="recalculateTotals()">
+              <div>
+                <strong data-i18n="installOptionTitle">Орнату шеберін шақыру (+5 000 ₸)</strong>
+                <span data-i18n="installOptionDesc">Кәсіби шебер келіп люстраны құрастырып, төбеге орнатып береді</span>
+              </div>
+            </label>
+
+            <!-- Payment Type Selection -->
+            <div class="checkout-input-group">
+              <label data-i18n="paymentTypeLabel">Төлем түрі:</label>
+              <div class="payment-radios">
+                <label class="pay-radio-card active">
+                  <input type="radio" name="payMethod" value="kaspi_qr" checked onchange="updatePayMethodUI()">
+                  <div class="pay-radio-content">
+                    <span class="pay-name">Kaspi QR / Pay</span>
+                    <span class="pay-hint" data-i18n="payKaspiHint">Дереу QR код арқылы онлайн төлеу</span>
+                  </div>
+                </label>
+                <label class="pay-radio-card">
+                  <input type="radio" name="payMethod" value="kaspi_red" onchange="updatePayMethodUI()">
+                  <div class="pay-radio-content">
+                    <span class="pay-name">Kaspi Red / 0-0-12</span>
+                    <span class="pay-hint" data-i18n="payRedHint">Пайызсыз бөліп төлеу</span>
+                  </div>
+                </label>
+                <label class="pay-radio-card">
+                  <input type="radio" name="payMethod" value="cash" onchange="updatePayMethodUI()">
+                  <div class="pay-radio-content">
+                    <span class="pay-name" data-i18n="payCash">Қолма-қол төлем</span>
+                    <span class="pay-hint" data-i18n="payCashHint">Курьер жеткізген кезде қолма-қол беру</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Total Calculation Breakdown -->
+          <div class="cart-summary-breakdown">
+            <div class="summary-line">
+              <span data-i18n="subtotalLabel">Тауарлар құны:</span>
+              <span id="subtotalVal">0 ₸</span>
+            </div>
+            <div class="summary-line">
+              <span data-i18n="delivCostLabel">Жеткізу:</span>
+              <span id="deliveryCostVal">Тегін</span>
+            </div>
+            <div class="summary-line" id="installCostRow" style="display: none;">
+              <span data-i18n="installCostLabel">Орнату қызметі:</span>
+              <span>5 000 ₸</span>
+            </div>
+            <div class="summary-line total-line">
+              <span data-i18n="totalLabel">Барлығы төлеуге:</span>
+              <strong id="grandTotalVal">0 ₸</strong>
+            </div>
+          </div>
+
+          <!-- Checkout Buttons -->
+          <div class="cart-checkout-actions">
+            <!-- Kaspi Pay Checkout -->
+            <button class="btn btn-kaspi btn-full" id="payKaspiBtn" onclick="processOrderCheckout('kaspi')">
+              <i class="fa-solid fa-qrcode"></i>
+              <span data-i18n="btnPayKaspi">Kaspi QR сұрау</span>
+            </button>
+            
+            <!-- WhatsApp Order Checkout -->
+            <button class="btn btn-wa btn-full" onclick="processOrderCheckout('whatsapp')">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span data-i18n="btnOrderWa">Ватсапқа тапсырыс жіберу</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= KASPI QR REQUEST MODAL ================= -->
+  <div class="modal-overlay" id="kaspiModalOverlay" onclick="handleKaspiOverlayClick(event)">
+    <div class="kaspi-modal-card">
+      <div class="kaspi-modal-header">
+        <div class="kaspi-logo-title">
+          <div class="kaspi-badge-circle">K</div>
+          <span>Kaspi Pay | Төлем</span>
+        </div>
+        <button class="kaspi-close-btn" onclick="toggleKaspiModal(false)" aria-label="Жабу"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="kaspi-modal-body">
+        <p class="kaspi-instruction" data-i18n="kaspiInstruction">
+          Kaspi QR-кодты менеджер WhatsApp арқылы жібереді. Төлемді тек Kaspi.kz қосымшасында растаңыз.
+        </p>
+
+        <div class="kaspi-qr-request">
+          <div class="kaspi-qr-request-icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <strong data-i18n="kaspiQrTitle">QR-кодты WhatsApp-тан алыңыз</strong>
+          <span data-i18n="kaspiQrNote">Біз соманы растап, жеке Kaspi QR сілтемесін жібереміз.</span>
+        </div>
+
+        <div class="kaspi-order-amount">
+          <span data-i18n="kaspiAmountLabel">Төленетін сома:</span>
+          <strong id="kaspiModalAmount">0 ₸</strong>
+        </div>
+
+        <div class="kaspi-hints">
+          <div><i class="fa-solid fa-shield-halved"></i> <span data-i18n="kaspiSafeNote">Төлем тек Kaspi қосымшасында жүреді</span></div>
+          <div><i class="fa-solid fa-comments"></i> <span data-i18n="kaspiManagerNote">Менеджер тапсырысты растап, QR жібереді</span></div>
+        </div>
+
+        <button class="btn btn-wa btn-full" onclick="requestKaspiQr()">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span data-i18n="kaspiQrBtn">WhatsApp-тан Kaspi QR алу</span>
+        </button>
+        <button class="btn btn-outline btn-full kaspi-cancel-btn" onclick="toggleKaspiModal(false)" data-i18n="cancelBtn">Болдырмау</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PRODUCT QUICK VIEW MODAL ================= -->
+  <div class="modal-overlay" id="productModalOverlay" onclick="handleProductOverlayClick(event)">
+    <div class="product-modal-card">
+      <button class="product-modal-close" onclick="closeProductModal()"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="product-modal-grid">
+        <div class="product-modal-image-col">
+          <img id="modalProductImage" src="" alt="Product" class="modal-img">
+          <div class="product-modal-badge" id="modalProductBadge"></div>
+        </div>
+
+        <div class="product-modal-details-col">
+          <span class="product-modal-cat" id="modalProductCategory"></span>
+          <h2 class="product-modal-title" id="modalProductTitle"></h2>
+          
+          <div class="product-modal-stars">
+            <div class="stars-gold" id="modalProductStars"></div>
+            <span class="reviews-count" id="modalProductReviewsCount"></span>
+          </div>
+
+          <div class="product-modal-prices">
+            <span class="modal-current-price" id="modalProductPrice"></span>
+            <span class="modal-old-price" id="modalProductOldPrice"></span>
+          </div>
+
+          <p class="modal-desc" id="modalProductDesc"></p>
+
+          <div class="modal-specs-list" id="modalProductSpecs">
+            <!-- Injected by JS -->
+          </div>
+
+          <div class="modal-actions-row">
+            <button class="btn btn-primary btn-lg" id="modalAddToCartBtn">
+              <i class="fa-solid fa-bag-shopping"></i>
+              <span data-i18n="addToCartBtn">Себетке қосу</span>
+            </button>
+            <button class="btn btn-wa btn-lg" id="modalWaAskBtn">
+              <i class="fa-brands fa-whatsapp"></i>
+              <span data-i18n="askWaBtn">Ватсаптан кеңес алу</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript application logic -->
+  <script src="products.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
